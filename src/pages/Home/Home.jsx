@@ -1,5 +1,10 @@
+import React from 'react'
+import CountryCard from './components/CountryCard'
+
 export default function Home() {
     return (
-        <div>i'm a simple home page</div>
+        <div>
+            <CountryCard></CountryCard>
+        </div>
     )
 }
