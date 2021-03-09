@@ -1,14 +1,15 @@
 /* Router */
-import { BrowserRouter } from "react-router-dom";
-import { RouterConfig } from "./navigation/RouterConfig";
+import { BrowserRouter } from "react-router-dom"
+import { RouterConfig } from "./navigation/RouterConfig"
 
 /* Redux */
-import { Provider } from "react-redux";
-import { store } from "./redux/store";
+import { Provider } from "react-redux"
+import { store } from "./redux/store"
 
 /* Material */
-import theme from "./styles/theme";
-import { ThemeProvider } from "@material-ui/core/styles";
+import theme from "./styles/theme"
+import { ThemeProvider } from "@material-ui/core/styles"
+import "./styles/styles.css"
 
 export const App = () => {
     return (
@@ -21,6 +22,6 @@ export const App = () => {
                 </ThemeProvider>
             </Provider>
         </div>
-    );
-};
-export default App;
+    )
+}
+export default App
