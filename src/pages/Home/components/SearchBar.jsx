@@ -7,9 +7,9 @@ import CloseIcon from "@material-ui/icons/Close"
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        padding: '2px 4 px',
-        display: 'flex',
-        alignItems: 'center',
+        padding: "2px 4 px",
+        display: "flex",
+        alignItems: "center",
         width: "md",
     },
     input: {
