@@ -13,7 +13,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   cardMedia: {
-    paddingTop: "70%",
+    height: 150,
   },
   cardContent: {
     flexGrow: 1,
@@ -21,6 +21,9 @@ const useStyles = makeStyles((theme) => ({
   },
   cardGrid: {
     marginTop: theme.spacing(4),
+  },
+  cardAction: {
+    backgroundColor: "hsl(0, 0%, 67%)"
   },
   hover: {
     '&:hover': {
@@ -38,15 +41,15 @@ export default function CountryCard() {
   return ( 
         <Container className={classes.cardGrid} maxWidth="md">
           <Grid container spacing={4}>
-            {cards.map((card) => {
+            {cards.map((card, index) => {
               return (
-                <Grid item key={card} xs={12} sm={6} md={4} className={classes.hover}>
+                <Grid item key={index} xs={12} sm={6} md={4} className={classes.hover}>
                   <Card className={classes.card} >
                     <CardMedia
                       className={classes.cardMedia}
                       image="https://source.unsplash.com/random"
                       title="Image Title"
-                    >
+                    />
                       <CardContent className={classes.cardContent}>
                         <Typography variant="h5" gutterBottom>
                           Страна
@@ -55,12 +58,11 @@ export default function CountryCard() {
                           О стране, тут обязательно должен побывать каждый 
                         </Typography>
                       </CardContent>
-                      <CardActions style={{backgroundColor: "hsl(0, 0%, 67%)"}}>
+                      <CardActions className={classes.cardAction}>
                         <Button size="small" color="primary">
                           Посмотреть
                         </Button>
                       </CardActions>
-                    </CardMedia>
                   </Card>
                 </Grid>
               );
