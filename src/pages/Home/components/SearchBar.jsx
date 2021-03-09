@@ -3,6 +3,7 @@ import Divider from "@material-ui/core/Divider"
 import { useState } from "react"
 import SearchIcon from "@material-ui/icons/Search"
 import CloseIcon from "@material-ui/icons/Close"
+import Zoom from "@material-ui/core/Zoom"
 
 
 const useStyles = makeStyles((theme) => ({
@@ -43,15 +44,17 @@ export default function SearchBar() {
                     placeholder="search..."
 
                 />
+                <Zoom in={!!searchMsg}>
+                    <IconButton aria-label="close"
+                        className={classes.iconButton}
+                        onClick={() => updateMsg('')}>
+                        <CloseIcon />
+                    </IconButton>
+                </Zoom>
                 <IconButton type="submit" aria-label="search" className={classes.iconButton}>
                     <SearchIcon />
                 </IconButton>
                 <Divider className={classes.divider} orientation="vertical" />
-                <IconButton aria-label="close"
-                    className={classes.iconButton}
-                    onClick={() => updateMsg('')}>
-                    <CloseIcon />
-                </IconButton>
             </Paper>
         </ Container>
     )
