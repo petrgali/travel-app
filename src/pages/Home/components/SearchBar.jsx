@@ -1,6 +1,5 @@
-import { Container, IconButton, InputBase, makeStyles, Paper } from "@material-ui/core"
-import Divider from "@material-ui/core/Divider"
 import { useState } from "react"
+import { Container, IconButton, InputBase, makeStyles, Paper } from "@material-ui/core"
 import SearchIcon from "@material-ui/icons/Search"
 import CloseIcon from "@material-ui/icons/Close"
 import Zoom from "@material-ui/core/Zoom"
@@ -8,15 +7,15 @@ import Zoom from "@material-ui/core/Zoom"
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        padding: "2px 4 px",
+        // padding: "2px 4 px",
         display: "flex",
         alignItems: "center",
-        width: "md",
+        // width: "md",
     },
     input: {
         marginLeft: theme.spacing(1),
         flex: 1,
-        fontSize: "large"
+        // fontSize: "large"
     },
     iconButton: {
         padding: 10,
@@ -54,7 +53,6 @@ export default function SearchBar() {
                 <IconButton type="submit" aria-label="search" className={classes.iconButton}>
                     <SearchIcon />
                 </IconButton>
-                <Divider className={classes.divider} orientation="vertical" />
             </Paper>
         </ Container>
     )
