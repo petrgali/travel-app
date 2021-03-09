@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import {
     Container,
     Grid,
@@ -23,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     },
     hover: {
         '&:hover': {
-            opacity: "0.6"
+            opacity: "0.6",
         }
     }
 
@@ -55,9 +56,11 @@ export default function CountryCard(props) {
                                         </Typography>
                                     </CardContent>
                                     <CardActions style={{ backgroundColor: "hsl(0, 0%, 67%)" }}>
-                                        <Button size="small" color="primary">
-                                            Посмотреть
+                                        <Link to={`/countries/${country.name}`}>
+                                            <Button size="small" color="primary">
+                                                Посмотреть
                         </Button>
+                                        </Link>
                                     </CardActions>
                                 </CardMedia>
                             </Card>
