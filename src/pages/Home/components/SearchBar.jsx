@@ -38,7 +38,7 @@ export default function SearchBar() {
                 <InputBase
                     value={searchMsg}
                     onChange={(event) => updateMsg(event.target.value)}
-                    autoFocus={true}
+                    autoFocus
                     className={classes.input}
                     placeholder="search..."
 
