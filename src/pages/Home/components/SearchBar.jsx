@@ -6,9 +6,9 @@ import CloseIcon from "@material-ui/icons/Close"
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        padding: '2px 4 px',
-        display: 'flex',
-        alignItems: 'center',
+        padding: "2px 4 px",
+        display: "flex",
+        alignItems: "center",
         width: "md",
     },
     input: {
@@ -39,7 +39,7 @@ export default function SearchBar(props) {
                 <InputBase
                     value={searchMsg}
                     onChange={(event) => updateMsg(event.target.value)}
-                    autoFocus={true}
+                    autoFocus
                     className={classes.input}
                     placeholder="search..."
 
