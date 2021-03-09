@@ -1,21 +1,26 @@
-
 /* Router */
-import { BrowserRouter } from "react-router-dom"
-import { RouterConfig } from "./navigation/RouterConfig"
+import { BrowserRouter } from "react-router-dom";
+import { RouterConfig } from "./navigation/RouterConfig";
 
 /* Redux */
-import { Provider } from "react-redux"
-import { store } from "./redux/store"
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
+
+/* Material */
+import theme from "./styles/theme";
+import { ThemeProvider } from "@material-ui/core/styles";
 
 export const App = () => {
     return (
         <div>
             <Provider store={store}>
-                <BrowserRouter>
-                    <RouterConfig />
-                </BrowserRouter>
+                <ThemeProvider theme={theme}>
+                    <BrowserRouter>
+                        <RouterConfig />
+                    </BrowserRouter>
+                </ThemeProvider>
             </Provider>
         </div>
-    )
-}
-export default App
+    );
+};
+export default App;
