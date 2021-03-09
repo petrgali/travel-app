@@ -7,15 +7,12 @@ import Zoom from "@material-ui/core/Zoom"
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        // padding: "2px 4 px",
         display: "flex",
         alignItems: "center",
-        // width: "md",
     },
     input: {
         marginLeft: theme.spacing(1),
         flex: 1,
-        // fontSize: "large"
     },
     iconButton: {
         padding: 10,
@@ -25,7 +22,6 @@ const useStyles = makeStyles((theme) => ({
 export default function SearchBar() {
     const classes = useStyles()
     let [searchMsg, updateMsg] = useState('')
-    /*Search logic placed here*/
 
     const handleSearch = (event) => {
         event.preventDefault()
