@@ -9,6 +9,7 @@ const useStyles = makeStyles((theme) => ({
     root: {
         display: "flex",
         alignItems: "center",
+        border: "1px solid #a0aec0"
     },
     input: {
         marginLeft: theme.spacing(1),
