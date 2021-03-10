@@ -12,7 +12,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
     cardMedia: {
-        paddingTop: "70%",
+       paddingTop:"70%",
     },
     cardContent: {
         flexGrow: 1,
@@ -20,6 +20,9 @@ const useStyles = makeStyles((theme) => ({
     },
     cardGrid: {
         marginTop: theme.spacing(4),
+    },
+    cardAction: {
+        backgroundColor: "hsl(0, 0%, 67%)"
     },
     hover: {
         '&:hover': {
@@ -37,7 +40,7 @@ export default function CountryCard(props) {
             <Grid container spacing={4}>
                 {props.countries.map((country, idx) => {
                     return (
-                        <Grid item key={props.countries.length - idx}
+                        <Grid item key={idx}
                             xs={12} sm={6} md={4}
                             className={classes.hover}>
                             <Card className={classes.card} >
@@ -54,10 +57,10 @@ export default function CountryCard(props) {
                                             {country.capital} тут обязательно должен побывать каждый
                                         </Typography>
                                     </CardContent>
-                                    <CardActions style={{ backgroundColor: "hsl(0, 0%, 67%)" }}>
+                                    <CardActions className={classes.cardAction}>
                                         <Button size="small" color="primary">
                                             Посмотреть
-                        </Button>
+                                        </Button>
                                     </CardActions>
                                 </CardMedia>
                             </Card>

@@ -28,11 +28,12 @@ export default function SearchBar(props) {
     adding throttle behavior
     to search requests
     */
-    useEffect(() => {
-        let interval = setTimeout(() => {
-            props.handleSearch(searchMsg)
+   useEffect(() => {
+       let interval = setTimeout(() => {
+           props.handleSearch(searchMsg)
         }, 500)
         return () => clearInterval(interval)
+        // eslint-disable-next-line
     }, [searchMsg])
 
     return (
