@@ -48,11 +48,7 @@ const countriesDummy = [
 ]
 export default function Home() {
     let [countriesList, updateList] = useState(countriesDummy)
-    const handle = (request) => {
-        !request
-            ? updateList(countriesDummy)
-            : updateList(handleSearch(request, countriesDummy))
-    }
+    const handle = (request) => updateList(handleSearch(request, countriesDummy))
     return (
         <>
             <SearchBar handleSearch={(request) => handle(request)} />
