@@ -22,9 +22,6 @@ const useStyles = makeStyles((theme) => ({
   cardGrid: {
     marginTop: theme.spacing(4),
   },
-  cardAction: {
-    backgroundColor: "hsl(0, 0%, 67%)"
-  },
   hover: {
     '&:hover': {
       opacity:"0.6"
