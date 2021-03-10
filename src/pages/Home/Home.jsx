@@ -1,5 +1,5 @@
 import { useState } from "react"
-import CountryCard from "./components/CountryCard"
+import CountryCards from "./components/CountryCards"
 import SearchBar from "./components/SearchBar"
 import handleSearch from "../../utils/search"
 
@@ -58,7 +58,7 @@ export default function Home() {
     return (
         <>
             <SearchBar handleSearch={(request) => handle(request)} />
-            <CountryCard countries={countriesList} />
+            <CountryCards countries={countriesList} />
         </>
     )
 }
