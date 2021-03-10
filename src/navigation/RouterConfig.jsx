@@ -2,7 +2,7 @@ import { Switch, Route } from "react-router-dom"
 import { COUNTRY, ROOT } from "./CONSTANTS"
 import { NotFound } from "./NotFound"
 import Home from "../pages/Home/Home"
-import Country from "../pages/Country/Country."
+import Country from "../pages/Country/Country"
 
 export const RouterConfig = () => {
     return (
@@ -12,9 +12,7 @@ export const RouterConfig = () => {
                 <Route exact path={ROOT} component={Home} />
                 <Route exact path={COUNTRY} component={Country} />
                 {/*generic 404 route*/}
-                <Route path="*">
-                    <NotFound />
-                </Route>
+                <Route path="*" component={NotFound}/>
             </Switch>
         </div>
     )

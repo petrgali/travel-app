@@ -1,2 +1,2 @@
 export const ROOT = '/'
-export const COUNTRY = '/countries/:name'
+export const COUNTRY = '/countries/:location'

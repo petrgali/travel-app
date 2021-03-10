@@ -1,13 +1,14 @@
-import { useLocation } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { Link } from "react-router-dom"
 import { ROOT } from "../../navigation/CONSTANTS"
 
 export default function Country() {
-    let URL = useLocation().pathname.split("/")
+    let { location } = useParams()
     return (
         <>
             <Link to={ROOT}>Home</Link>
-            <div>i'm page about {URL[URL.length - 1]}</div>
+            <div>i'm page about {location}</div>
         </>
     )
+
 }
