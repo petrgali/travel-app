@@ -32,7 +32,7 @@ export default function SearchBar(props) {
        let interval = setTimeout(() => {
            props.handleSearch(searchMsg)
         }, 500)
-        return () => clearInterval(interval)
+        return () => clearTimeout(interval)
         // eslint-disable-next-line
     }, [searchMsg])
 
