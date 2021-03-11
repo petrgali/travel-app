@@ -5,9 +5,6 @@ import {
     Card,
     CardMedia,
     CardContent,
-    Typography,
-    CardActions,
-    Button,
 } from "@material-ui/core"
 import { makeStyles } from "@material-ui/core/styles"
 
@@ -26,7 +23,9 @@ const useStyles = makeStyles((theme) => ({
     },
     hover: {
         "&:hover": {
-            opacity: "0.6",
+            transition: "transform .2s ease-in-out",
+            cursor: "pointer",
+            transform: "translateY(-3%)",
         },
     },
 }))
@@ -35,6 +34,10 @@ function CountryCard({ t }) {
     const classes = useStyles()
 
     const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+    const handleClick = () => {
+        alert("Clicked")
+    }
 
     return (
         <Container className={classes.cardGrid} maxWidth="md">
@@ -50,26 +53,22 @@ function CountryCard({ t }) {
                             md={4}
                             className={classes.hover}
                         >
-                            <Card className={classes.card}>
+                            <Card
+                                className={classes.card}
+                                onClick={handleClick}
+                            >
                                 <CardMedia
                                     className={classes.cardMedia}
                                     image="https://source.unsplash.com/random"
                                     title="Image Title"
                                 />
                                 <CardContent className={classes.cardContent}>
-                                    <Typography variant="h5" gutterBottom>
-                                        Страна
-                                    </Typography>
-                                    <Typography>
+                                    <h5>Страна</h5>
+                                    <p>
                                         О стране, тут обязательно должен
                                         побывать каждый
-                                    </Typography>
+                                    </p>
                                 </CardContent>
-                                <CardActions className={classes.cardAction}>
-                                    <Button size="small" color="primary">
-                                        Посмотреть
-                                    </Button>
-                                </CardActions>
                             </Card>
                         </Grid>
                     )
