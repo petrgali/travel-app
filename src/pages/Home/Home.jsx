@@ -1,5 +1,5 @@
-import SearchBar from "./components/SearchBar";
-import CountryCard from "./components/CountryCard";
+import SearchBar from "./components/SearchBar"
+import CountryCard from "./components/CountryCard"
 
 export default function Home() {
     return (
@@ -7,5 +7,5 @@ export default function Home() {
             <SearchBar />
             <CountryCard />
         </>
-    );
+    )
 }
