@@ -10,7 +10,9 @@ import {
     Button,
 } from "@material-ui/core"
 import { makeStyles } from "@material-ui/core/styles"
+
 import { withNamespaces } from "react-i18next"
+
 const useStyles = makeStyles((theme) => ({
     cardMedia: {
         height: 150,
