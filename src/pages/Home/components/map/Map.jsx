@@ -6,6 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import VectorLayer from "ol/layer/Vector";
 import VectorSource from "ol/source/Vector";
 import GeoJSON from 'ol/format/GeoJSON';
+import {FullScreen} from 'ol/control';
 import kz from './source/kazakhstan.geojson'
 
 
@@ -35,7 +36,7 @@ const olMap = new Map({
     center: [0, 0],
     zoom: 2,
   }),
-  controls: [],
+  controls: [new FullScreen()],
 });
 
 export default function OlMap() {
