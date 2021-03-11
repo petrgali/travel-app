@@ -24,15 +24,8 @@ export default function SearchBar(props) {
     const classes = useStyles()
     let [searchMsg, updateMsg] = useState('')
 
-    /*
-    adding throttle behavior
-    to search requests
-    */
    useEffect(() => {
-       let interval = setTimeout(() => {
-           props.handleSearch(searchMsg)
-        }, 500)
-        return () => clearTimeout(interval)
+       if (!searchMsg) props.handleSearch(searchMsg)
         // eslint-disable-next-line
     }, [searchMsg])
 
