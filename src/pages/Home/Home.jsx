@@ -1,10 +1,11 @@
-import React from 'react'
-import CountryCard from './components/CountryCard'
+import SearchBar from "./components/SearchBar";
+import CountryCard from "./components/CountryCard";
 
 export default function Home() {
     return (
-        <div>
+        <>
+            <SearchBar />
             <CountryCard />
-        </div>
-    )
+        </>
+    );
 }
