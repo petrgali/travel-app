@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import {
     Container,
     Grid,
@@ -8,6 +8,9 @@ import {
 } from "@material-ui/core"
 import { makeStyles } from "@material-ui/core/styles"
 import { withNamespaces } from "react-i18next"
+
+import { useSelector, useDispatch } from "react-redux"
+import { getCountries } from "../../../redux/actions/countryActions"
 
 const useStyles = makeStyles((theme) => ({
     cardMedia: {
@@ -29,8 +32,14 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-function CountryCard(props) {
-    let { t } = props
+function CountryCard({ t }) {
+    const dispatch = useDispatch()
+    const countries = useSelector((state) => state.country.countries)
+    console.log(countries)
+    useEffect(() => {
+        dispatch(getCountries())
+    }, [dispatch])
+
     const classes = useStyles()
     const handleClick = () => {
         console.log("Clicked")
@@ -39,7 +48,7 @@ function CountryCard(props) {
         <Container className={classes.cardGrid} maxWidth="md">
             <h1>{t("Welcome")}</h1>
             <Grid container spacing={4}>
-                {props.countries.map((card, index) => {
+                {countries.map((card, index) => {
                     return (
                         <Grid
                             item
@@ -55,7 +64,7 @@ function CountryCard(props) {
                             >
                                 <CardMedia
                                     className={classes.cardMedia}
-                                    image={card.previewURL}
+                                    image={card.imageUrl}
                                     title="Image Title"
                                 />
                                 <CardContent className={classes.cardContent}>
