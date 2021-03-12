@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 const Header = ({ t }) => {
     const [anchorEl, setAnchorEl] = React.useState(null)
 
-    const languages = ["en", "ru"]
+    const languages = ["kz", "ru", "en"]
     const changeLanguage = (lng) => {
         i18n.changeLanguage(lng)
     }
