@@ -12,5 +12,5 @@ export default function Home() {
             <SearchBar handleSearch={(request) => handle(request)} />
             <CountryCard countries={countriesList} />
         </>
-    );
+    )
 }

@@ -1,19 +1,17 @@
-import React from "react";
+import React from "react"
 import {
-  Container,
-  Grid,
-  Card,
-  CardMedia,
-  CardContent,
-  Typography,
-  CardActions,
-  Button,
-} from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+    Container,
+    Grid,
+    Card,
+    CardMedia,
+    CardContent,
+} from "@material-ui/core"
+import { makeStyles } from "@material-ui/core/styles"
+import { withNamespaces } from "react-i18next"
 
 const useStyles = makeStyles((theme) => ({
     cardMedia: {
-       paddingTop:"70%",
+        height: 150,
     },
     cardContent: {
         flexGrow: 1,
@@ -22,52 +20,55 @@ const useStyles = makeStyles((theme) => ({
     cardGrid: {
         marginTop: theme.spacing(4),
     },
-   cardAction: {
-        backgroundColor: "hsl(0, 0%, 67%)"
-    },
     hover: {
-        '&:hover': {
-            opacity: "0.6"
-        }
+        "&:hover": {
+            transition: "transform .2s ease-in-out",
+            cursor: "pointer",
+            transform: "translateY(-3%)",
+        },
+    },
+}))
+
+function CountryCard(props) {
+  let { t } = props
+  const classes = useStyles()
+  const handleClick = () => {
+        console.log("Clicked")
     }
-
-}));
-
-export default function CountryCard(props) {
-    const classes = useStyles();
     return (
         <Container className={classes.cardGrid} maxWidth="md">
+            <h1>{t("Welcome")}</h1>
             <Grid container spacing={4}>
-                {props.countries.map((country, idx) => {
+                {props.countries.map((card, index) => {
                     return (
-                        <Grid item key={idx}
-                            xs={12} sm={6} md={4}
-                            className={classes.hover}>
-                            <Card className={classes.card} >
+                        <Grid
+                            item
+                            key={index}
+                            xs={12}
+                            sm={6}
+                            md={4}
+                            className={classes.hover}
+                        >
+                            <Card
+                                className={classes.card}
+                                onClick={handleClick}
+                            >
                                 <CardMedia
                                     className={classes.cardMedia}
                                     image={country.previewURL}
                                     title="Image Title"
-                                >
-                                    <CardContent className={classes.cardContent}>
-                                        <Typography variant="h5" gutterBottom>
-                                            {country.name}
-                                        </Typography>
-                                        <Typography>
-                                            {country.capital} тут обязательно должен побывать каждый
-                                        </Typography>
-                                    </CardContent>
-                                    <CardActions className={classes.cardAction}>
-                                        <Button size="small" color="primary">
-                                            Посмотреть
-                                        </Button>
-                                    </CardActions>
-                                </CardMedia>
+                                />
+                                <CardContent className={classes.cardContent}>
+                                    <h5>{country.name}</h5>
+                                    <p>{country.capital} , тут обязательно должен
+                                        побывать каждый
+                                    </p>
+                                </CardContent>
                             </Card>
                         </Grid>
-                    );
+                    )
                 })}
             </Grid>
         </Container>
-    );
-}
+    )
+export default withNamespaces()(CountryCard)
