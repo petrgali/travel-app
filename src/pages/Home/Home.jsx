@@ -1,12 +1,10 @@
-// import SearchBar from "./components/SearchBar";
-// import CountryCard from "./components/CountryCard";
-import CountryWeather from "../Country/components/CountryWeather"
+import SearchBar from "./components/SearchBar";
+import CountryCard from "./components/CountryCard";
 export default function Home() {
     return (
         <>
-            <CountryWeather />
-            {/* <SearchBar /> */}
-            {/* <CountryCard /> */}
+            <SearchBar />
+            <CountryCard />
         </>
     );
 }
