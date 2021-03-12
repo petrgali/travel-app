@@ -5,7 +5,7 @@ import Button from "@material-ui/core/Button"
 import Menu from "@material-ui/core/Menu"
 import MenuItem from "@material-ui/core/MenuItem"
 
-import i18n from "../i18n"
+import i18n from "../i18n/i18n"
 import { withNamespaces } from "react-i18next"
 
 const useStyles = makeStyles((theme) => ({

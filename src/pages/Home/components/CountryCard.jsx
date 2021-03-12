@@ -60,7 +60,8 @@ function CountryCard(props) {
                                 />
                                 <CardContent className={classes.cardContent}>
                                     <h5>{card.name}</h5>
-                                    <p>{card.capital} , тут обязательно должен
+                                    <p>
+                                        {card.capital} , тут обязательно должен
                                         побывать каждый
                                     </p>
                                 </CardContent>
