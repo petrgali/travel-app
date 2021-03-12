@@ -24,7 +24,6 @@ i18n.use(detector)
     .use(reactI18nextModule)
     .init({
         resources,
-        lng: "kz",
         fallbackLng: "kz", // use en if detected lng is not available
         keySeparator: false, // we do not use keys in form messages.welcome
 
