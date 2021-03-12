@@ -1,12 +1,13 @@
+import React from "react";
 import {
-    Container,
-    Grid,
-    Card,
-    CardMedia,
-    CardContent,
-    Typography,
-    CardActions,
-    Button,
+  Container,
+  Grid,
+  Card,
+  CardMedia,
+  CardContent,
+  Typography,
+  CardActions,
+  Button,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -21,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     cardGrid: {
         marginTop: theme.spacing(4),
     },
-    cardAction: {
+   cardAction: {
         backgroundColor: "hsl(0, 0%, 67%)"
     },
     hover: {
@@ -34,7 +35,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CountryCard(props) {
     const classes = useStyles();
-
     return (
         <Container className={classes.cardGrid} maxWidth="md">
             <Grid container spacing={4}>
