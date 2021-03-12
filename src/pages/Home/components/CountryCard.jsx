@@ -30,9 +30,9 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 function CountryCard(props) {
-  let { t } = props
-  const classes = useStyles()
-  const handleClick = () => {
+    let { t } = props
+    const classes = useStyles()
+    const handleClick = () => {
         console.log("Clicked")
     }
     return (
@@ -55,12 +55,12 @@ function CountryCard(props) {
                             >
                                 <CardMedia
                                     className={classes.cardMedia}
-                                    image={country.previewURL}
+                                    image={card.previewURL}
                                     title="Image Title"
                                 />
                                 <CardContent className={classes.cardContent}>
-                                    <h5>{country.name}</h5>
-                                    <p>{country.capital} , тут обязательно должен
+                                    <h5>{card.name}</h5>
+                                    <p>{card.capital} , тут обязательно должен
                                         побывать каждый
                                     </p>
                                 </CardContent>
@@ -71,4 +71,5 @@ function CountryCard(props) {
             </Grid>
         </Container>
     )
+}
 export default withNamespaces()(CountryCard)
