@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import {
     Container,
     IconButton,
@@ -24,20 +24,26 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-export default function SearchBar() {
+export default function SearchBar(props) {
     const classes = useStyles()
     let [searchMsg, updateMsg] = useState("")
 
-    const handleSearch = (event) => {
-        event.preventDefault()
-        alert(`SEARCH REQUEST FOR ${searchMsg}`)
-    }
+   useEffect(() => {
+       if (!searchMsg) props.handleSearch(searchMsg)
+        // eslint-disable-next-line
+    }, [searchMsg])
+
     return (
-        <Container maxWidth="md" onSubmit={(event) => handleSearch(event)}>
-            <Paper component="form" elevation={3} className={classes.root}>
+        <Container maxWidth="md"
+            onSubmit={(event) => {
+                event.preventDefault()
+                props.handleSearch(searchMsg)
+            }}>
+            <Paper component="form" elevation={3} className={classes.root} >
+
                 <InputBase
                     value={searchMsg}
-                    onChange={(event) => updateMsg(event.target.value)}
+                    onChange={(event) => updateMsg(String(event.target.value))}
                     autoFocus
                     className={classes.input}
                     placeholder="search..."

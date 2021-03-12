@@ -7,7 +7,6 @@ import {
     CardContent,
 } from "@material-ui/core"
 import { makeStyles } from "@material-ui/core/styles"
-
 import { withNamespaces } from "react-i18next"
 
 const useStyles = makeStyles((theme) => ({
@@ -30,20 +29,17 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-function CountryCard({ t }) {
-    const classes = useStyles()
-
-    const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-    const handleClick = () => {
+function CountryCard(props) {
+  let { t } = props
+  const classes = useStyles()
+  const handleClick = () => {
         console.log("Clicked")
     }
-
     return (
         <Container className={classes.cardGrid} maxWidth="md">
             <h1>{t("Welcome")}</h1>
             <Grid container spacing={4}>
-                {cards.map((card, index) => {
+                {props.countries.map((card, index) => {
                     return (
                         <Grid
                             item
@@ -59,13 +55,12 @@ function CountryCard({ t }) {
                             >
                                 <CardMedia
                                     className={classes.cardMedia}
-                                    image="https://source.unsplash.com/random"
+                                    image={country.previewURL}
                                     title="Image Title"
                                 />
                                 <CardContent className={classes.cardContent}>
-                                    <h5>Страна</h5>
-                                    <p>
-                                        О стране, тут обязательно должен
+                                    <h5>{country.name}</h5>
+                                    <p>{country.capital} , тут обязательно должен
                                         побывать каждый
                                     </p>
                                 </CardContent>
@@ -76,6 +71,4 @@ function CountryCard({ t }) {
             </Grid>
         </Container>
     )
-}
-
 export default withNamespaces()(CountryCard)
