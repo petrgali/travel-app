@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { makeStyles } from "@material-ui/core/styles"
 import AppBar from "@material-ui/core/AppBar"
 import Button from "@material-ui/core/Button"
@@ -7,12 +7,14 @@ import MenuItem from "@material-ui/core/MenuItem"
 
 import i18n from "../i18n"
 import { withNamespaces } from "react-i18next"
+import Register from "./Register"
 
 const useStyles = makeStyles((theme) => ({
     root: {
         height: "3rem",
-        justifyContent: "center",
-        alignItems: "flex-end",
+        flexDirection: "row",
+        justifyContent: "flex-end",
+        alignItems: "center",
     },
     menuButton: {
         marginRight: theme.spacing(2),
@@ -24,7 +26,8 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const Header = ({ t }) => {
-    const [anchorEl, setAnchorEl] = React.useState(null)
+    const [anchorEl, setAnchorEl] = useState(null)
+    const [isRegisterOpen, setIsRegisterOpen] = useState(false);
 
     const languages = ["kz", "ru", "en"]
     const changeLanguage = (lng) => {
@@ -41,9 +44,23 @@ const Header = ({ t }) => {
         setAnchorEl(null)
     }
 
+    const handleRegisterOpen = () => setIsRegisterOpen(true)
+
+    const handleRegisterClose = () => setIsRegisterOpen(false)
+
     const classes = useStyles()
     return (
         <AppBar position="fixed" className={classes.root}>
+            <Button
+                className={classes.menuButton}
+                onClick={handleRegisterOpen}
+            >
+                Регистрация
+            </Button>
+            <Register
+              isOpen={isRegisterOpen}
+              handleClose={handleRegisterClose}
+            />
             <Button
                 aria-controls="simple-menu"
                 aria-haspopup="true"
