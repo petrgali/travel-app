@@ -1,8 +1,9 @@
 import { useState } from "react"
-import CountryCard from "./components/CountryCard"
+// import CountryCard from "./components/CountryCard"
 import SearchBar from "./components/SearchBar"
 import handleSearch from "../../utils/search"
 import {countriesDummy} from "../CONSTANT"
+import CurrencyWidget from "../Country/components/CurrrencyWidget"
 
 export default function Home() {
     let [countriesList, updateList] = useState(countriesDummy)
@@ -10,7 +11,8 @@ export default function Home() {
     return (
         <>
             <SearchBar handleSearch={(request) => handle(request)} />
-            <CountryCard countries={countriesList} />
+            {/* <CountryCard countries={countriesList} /> */}
+            <CurrencyWidget />
         </>
     )
 }

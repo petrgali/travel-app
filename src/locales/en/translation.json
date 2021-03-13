@@ -1,3 +1,7 @@
 {
-    "Welcome": "Welcome!"
+    "Welcome": "Welcome!",
+    "Exchange rates": "Exchange rates",
+    "USD/KZT": "USD/KZT",
+    "EUR/KZT": "EUR/KZT",
+    "RUB/KZT": "RUB/KZT"
 }
