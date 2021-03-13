@@ -6,8 +6,21 @@ const register = async (data) => {
     const response = await api.post(
       'auth/register',
       data,
-    );
-    document.cookie = `refreshToken=${response.data.refreshToken}; expires="${expires(604800000)}"; path=/`;
+    )
+    document.cookie = `refreshToken=${response.data.refreshToken}; expires="${expires(604800000)}"; path=/`
+    return response.data
+  } catch (error) {
+    return error.response.data
+  }
+}
+
+const login = async (data) => {
+  try {
+    const response = await api.post(
+      'auth/login',
+      data,
+    )
+    document.cookie = `refreshToken=${response.data.refreshToken}; expires="${expires(604800000)}"; path=/`
     return response.data
   } catch (error) {
     return error.response.data
@@ -16,4 +29,5 @@ const register = async (data) => {
 
 export {
   register,
+  login,
 }
