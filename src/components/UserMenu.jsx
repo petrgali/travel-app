@@ -60,14 +60,14 @@ const UserMenu = ({ user }) => {
           disabled
         >
           <Typography>
-            Logged in as @{ user.username }
+            Вы вошли под именем @{ user.username }
           </Typography>
         </MenuItem>
         <MenuItem
           className={classes.menuItem}
           onClick={handleLogout}
         >
-          Logout
+          Выйти
         </MenuItem>
       </Menu>
     </>
