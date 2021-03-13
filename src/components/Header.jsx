@@ -1,13 +1,15 @@
 import React, { useState } from "react"
-import { makeStyles } from "@material-ui/core/styles"
-import AppBar from "@material-ui/core/AppBar"
-import Button from "@material-ui/core/Button"
-import Menu from "@material-ui/core/Menu"
-import MenuItem from "@material-ui/core/MenuItem"
-
-import i18n from "../i18n"
+import {
+  makeStyles,
+  CircularProgress,
+  AppBar,
+  Button,
+} from "@material-ui/core"
 import { withNamespaces } from "react-i18next"
+import { useSelector } from "react-redux"
 import Register from "./Register"
+import UserMenu from "./UserMenu"
+import LangMenu from "./LangMenu"
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -23,26 +25,14 @@ const useStyles = makeStyles((theme) => ({
             background: "white",
         },
     },
+    loading: {
+      marginRight: 16,
+    }
 }))
 
 const Header = ({ t }) => {
-    const [anchorEl, setAnchorEl] = useState(null)
     const [isRegisterOpen, setIsRegisterOpen] = useState(false);
-
-    const languages = ["kz", "ru", "en"]
-    const changeLanguage = (lng) => {
-        i18n.changeLanguage(lng)
-    }
-
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget)
-    }
-
-    const handleClose = (e) => {
-        const { myValue } = e.currentTarget.dataset
-        changeLanguage(myValue)
-        setAnchorEl(null)
-    }
+    const userState = useSelector((state) => state.user)
 
     const handleRegisterOpen = () => setIsRegisterOpen(true)
 
@@ -51,41 +41,36 @@ const Header = ({ t }) => {
     const classes = useStyles()
     return (
         <AppBar position="fixed" className={classes.root}>
-            <Button
-                className={classes.menuButton}
-                onClick={handleRegisterOpen}
-            >
-                Регистрация
-            </Button>
-            <Register
-              isOpen={isRegisterOpen}
-              handleClose={handleRegisterClose}
-            />
-            <Button
-                aria-controls="simple-menu"
-                aria-haspopup="true"
-                onClick={handleClick}
-                className={classes.menuButton}
-            >
-                {i18n.language}
-            </Button>
-            <Menu
-                id="simple-menu"
-                anchorEl={anchorEl}
-                keepMounted
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-            >
-                {languages.map((lang, idx) => (
-                    <MenuItem
-                        key={idx}
-                        data-my-value={lang}
-                        onClick={handleClose}
+            {userState.isLoading && (
+              <CircularProgress
+                className={classes.loading}
+                size={24}
+                color="white"
+              />
+            )}
+            {!userState.isLoading && (
+              <>
+                {!userState.username && (
+                  <>
+                    <Button
+                        className={classes.menuButton}
+                        onClick={handleRegisterOpen}
                     >
-                        {lang}
-                    </MenuItem>
-                ))}
-            </Menu>
+                        Регистрация
+                    </Button>
+                    <Register
+                      isOpen={isRegisterOpen}
+                      handleClose={handleRegisterClose}
+                    />
+                  </>
+                )}
+
+                {userState.username && (
+                  <UserMenu user={userState} />
+                )}
+              </>
+            )}
+            <LangMenu />
         </AppBar>
     )
 }
