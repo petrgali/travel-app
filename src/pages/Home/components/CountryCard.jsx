@@ -10,13 +10,17 @@ import { makeStyles } from "@material-ui/core/styles"
 import { withNamespaces } from "react-i18next"
 
 import { useSelector, useDispatch } from "react-redux"
-import { getCountries } from "../../../redux/actions/countryActions"
+import { updateCountries } from "../../../redux/actions/countryActions"
+
+import getCountries from "../../../services/getCountries"
 
 const useStyles = makeStyles((theme) => ({
     cardMedia: {
         height: 150,
     },
     cardContent: {
+        maxHeight: "8rem",
+        overflow: "scroll",
         flexGrow: 1,
         backgroundColor: "white",
     },
@@ -35,9 +39,13 @@ const useStyles = makeStyles((theme) => ({
 function CountryCard({ t }) {
     const dispatch = useDispatch()
     const countries = useSelector((state) => state.country.countries)
-    console.log(countries)
+
     useEffect(() => {
-        dispatch(getCountries())
+        const _getCountries = async () => {
+            const res = await getCountries()
+            if (res) dispatch(updateCountries(res))
+        }
+        _getCountries()
     }, [dispatch])
 
     const classes = useStyles()
@@ -69,10 +77,7 @@ function CountryCard({ t }) {
                                 />
                                 <CardContent className={classes.cardContent}>
                                     <h5>{card.name}</h5>
-                                    <p>
-                                        {card.capital} , тут обязательно должен
-                                        побывать каждый
-                                    </p>
+                                    <p>{card.description}</p>
                                 </CardContent>
                             </Card>
                         </Grid>

@@ -1,13 +1,13 @@
-import { GET_COUNTRIES } from "../types"
+import { UPDATE_COUNTRIES } from "../types"
 
 const initialState = {
     countries: [],
-    loading: true,
+    isLoading: true,
 }
 
 export function countryReducer(state = initialState, action) {
     switch (action.type) {
-        case GET_COUNTRIES:
+        case UPDATE_COUNTRIES:
             return {
                 ...state,
                 countries: action.payload,
