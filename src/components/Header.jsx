@@ -8,6 +8,7 @@ import MenuItem from "@material-ui/core/MenuItem"
 import i18n from "../i18n"
 import { withNamespaces } from "react-i18next"
 import Register from "./Register"
+import Login from "./Login"
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -28,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 const Header = ({ t }) => {
     const [anchorEl, setAnchorEl] = useState(null)
     const [isRegisterOpen, setIsRegisterOpen] = useState(false);
-
+    const [isLoginOpen, setIsLoginOpen] = useState(false)
     const languages = ["kz", "ru", "en"]
     const changeLanguage = (lng) => {
         i18n.changeLanguage(lng)
@@ -48,15 +49,29 @@ const Header = ({ t }) => {
 
     const handleRegisterClose = () => setIsRegisterOpen(false)
 
+    const handleLoginOpen = () => setIsLoginOpen(true)
+
+    const handleLoginClose = () => setIsLoginOpen(false)
+
     const classes = useStyles()
     return (
         <AppBar position="fixed" className={classes.root}>
+            <Button
+                className={classes.menuButton}
+                onClick={handleLoginOpen}
+            >
+                Войти
+            </Button>
             <Button
                 className={classes.menuButton}
                 onClick={handleRegisterOpen}
             >
                 Регистрация
             </Button>
+            <Login
+              isOpen={isLoginOpen}
+              handleClose={handleLoginClose}
+            />
             <Register
               isOpen={isRegisterOpen}
               handleClose={handleRegisterClose}
