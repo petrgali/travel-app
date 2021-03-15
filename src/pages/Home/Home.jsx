@@ -20,7 +20,8 @@ export default function Home() {
     }, [dispatch])
 
     const handleClick = () => {
-        history.push("/country/24")
+        // hardcode
+        history.push("/country/60270368f347c8267c02a528")
     }
 
     return (
