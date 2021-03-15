@@ -1,4 +1,4 @@
-import { UPDATE_USER } from "../actions/userActions"
+import { UPDATE_USER } from "../types"
 
 const initialState = {
     username: null,
