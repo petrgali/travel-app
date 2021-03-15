@@ -95,9 +95,9 @@ const Header = ({ t }) => {
                             />
                         </>
                     )}
+                    <SearchBar handleSearch={(request) => handle(request)} />
 
                     {userState.username && <UserMenu user={userState} />}
-                    <SearchBar handleSearch={(request) => handle(request)} />
                 </>
             )}
             <LangMenu />
