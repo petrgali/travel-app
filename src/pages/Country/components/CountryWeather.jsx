@@ -79,12 +79,7 @@ export default function CountryWeather() {
                         image={weatherIcon}
                         title="weather icon"
                     />
-                    <Typography
-                        variant="subtitle1"
-                        className={classes.description}
-                    >
-                        {weatherData.weather[0].description}
-                    </Typography>
+                    <p> {weatherData.weather[0].description}</p>
                 </div>
             </Card>
         )
