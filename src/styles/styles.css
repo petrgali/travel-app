@@ -95,3 +95,20 @@ a {
     width: 1.5rem !important;
     height: auto !important;
 }
+
+.country {
+    padding: 0 3rem 3rem;
+}
+
+@media (max-width: 780px) {
+    .country {
+        padding: 0 0 3rem;
+    }
+    .col {
+        flex-direction: column;
+    }
+    .MuiGrid-grid-xs-6 {
+        max-width: 100% !important;
+        padding-bottom: 7rem;
+    }
+}

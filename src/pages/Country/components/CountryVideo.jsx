@@ -5,8 +5,7 @@ import { makeStyles } from "@material-ui/core/styles"
 
 const useStyles = makeStyles({
     main: {
-        padding: "3rem",
-        width: "50%",
+        padding: "0 3rem",
     },
 })
 
@@ -16,6 +15,8 @@ export default function CountryVideo({ url, poster }) {
     return (
         <>
             <div className={classes.main}>
+                <h3>Watch video</h3>
+
                 <Card>
                     <Player src={url} poster={poster}>
                         <LoadingSpinner />

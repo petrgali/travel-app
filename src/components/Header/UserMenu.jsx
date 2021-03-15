@@ -21,7 +21,6 @@ const UserMenu = ({ user }) => {
     const [anchorEl, setAnchorEl] = useState(null)
 
     const handleClick = (event) => {
-        console.log("clicked")
         setAnchorEl(event.currentTarget)
     }
 
