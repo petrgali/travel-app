@@ -1,9 +1,12 @@
 import React, { useEffect } from "react"
-import CountryDetail from "./components/CountryDetail"
 import { useSelector, useDispatch } from "react-redux"
 import { updateCountryDetail } from "../../redux/actions/countryDetailActions"
 
 import getCountryDetail from "../../services/getCountryDetail"
+
+import CountryDetail from "./components/CountryDetail"
+import CountryVideo from "./components/CountryVideo"
+// import CountryGallery from "./components/CountryGallery"
 
 export function Country(props) {
     const id = props.match.params.id
@@ -28,10 +31,16 @@ export function Country(props) {
     }, [dispatch, id])
 
     return (
-        <CountryDetail
-            country={country.countryDetail}
-            isLoading={country.isLoading}
-        ></CountryDetail>
+        <div>
+            <CountryDetail
+                country={country.countryDetail}
+                isLoading={country.isLoading}
+            ></CountryDetail>
+            <CountryVideo
+                url={country.countryDetail.videoUrl}
+                poster={country.countryDetail.imageUrl}
+            />
+        </div>
     )
 }
 

@@ -1,14 +1,27 @@
 import "../../../../node_modules/video-react/dist/video-react.css"
 import { Player, LoadingSpinner } from "video-react"
-import { video } from "../CONSTANT"
+import { Card } from "@material-ui/core"
+import { makeStyles } from "@material-ui/core/styles"
 
-export default function CountryVideo() {
+const useStyles = makeStyles({
+    main: {
+        padding: "3rem",
+        width: "50%",
+    },
+})
+
+export default function CountryVideo({ url, poster }) {
+    const classes = useStyles()
+
     return (
         <>
-            <Player src={video.URL} poster={video.poster}>
-                <LoadingSpinner />
-            </Player>
+            <div className={classes.main}>
+                <Card>
+                    <Player src={url} poster={poster}>
+                        <LoadingSpinner />
+                    </Player>
+                </Card>
+            </div>
         </>
-
     )
 }
