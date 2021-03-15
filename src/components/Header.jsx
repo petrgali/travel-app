@@ -1,17 +1,11 @@
 import React, { useState } from "react"
-import {
-  makeStyles,
-  CircularProgress,
-  AppBar,
-  Button,
-} from "@material-ui/core"
+import { makeStyles, CircularProgress, AppBar, Button } from "@material-ui/core"
 import { withNamespaces } from "react-i18next"
 import { useSelector } from "react-redux"
 import Register from "./Register"
 import UserMenu from "./UserMenu"
 import LangMenu from "./LangMenu"
 import Login from "./Login"
-
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -28,13 +22,13 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     loading: {
-      marginRight: 16,
-    }
+        marginRight: 16,
+    },
 }))
 
 const Header = ({ t }) => {
-    const [isRegisterOpen, setIsRegisterOpen] = useState(false);
-    const [isLoginOpen, setIsLoginOpen] = useState(false);
+    const [isRegisterOpen, setIsRegisterOpen] = useState(false)
+    const [isLoginOpen, setIsLoginOpen] = useState(false)
 
     const userState = useSelector((state) => state.user)
 
@@ -50,43 +44,41 @@ const Header = ({ t }) => {
     return (
         <AppBar position="fixed" className={classes.root}>
             {userState.isLoading && (
-              <CircularProgress
-                className={classes.loading}
-                size={24}
-                color="white"
-              />
+                <CircularProgress
+                    className={classes.loading}
+                    size={24}
+                    color="white"
+                />
             )}
             {!userState.isLoading && (
-              <>
-                {!userState.username && (
-                  <>
-                    <Button
-                        className={classes.menuButton}
-                        onClick={handleLoginOpen}
-                    >
-                        Войти
-                    </Button>
-                    <Login
-                      isOpen={isLoginOpen}
-                      handleClose={handleLoginClose}
-                    />
-                    <Button
-                        className={classes.menuButton}
-                        onClick={handleRegisterOpen}
-                    >
-                        Регистрация
-                    </Button>
-                    <Register
-                      isOpen={isRegisterOpen}
-                      handleClose={handleRegisterClose}
-                    />
-                  </>
-                )}
+                <>
+                    {!userState.username && (
+                        <>
+                            <Button
+                                className={classes.menuButton}
+                                onClick={handleLoginOpen}
+                            >
+                                Войти
+                            </Button>
+                            <Login
+                                isOpen={isLoginOpen}
+                                handleClose={handleLoginClose}
+                            />
+                            <Button
+                                className={classes.menuButton}
+                                onClick={handleRegisterOpen}
+                            >
+                                Регистрация
+                            </Button>
+                            <Register
+                                isOpen={isRegisterOpen}
+                                handleClose={handleRegisterClose}
+                            />
+                        </>
+                    )}
 
-                {userState.username && (
-                  <UserMenu user={userState} />
-                )}
-              </>
+                    {userState.username && <UserMenu user={userState} />}
+                </>
             )}
             <LangMenu />
         </AppBar>

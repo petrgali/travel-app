@@ -11,7 +11,7 @@ export const userReducer = (state = initialState, action) => {
         case UPDATE_USER:
             return {
                 ...state,
-                ...action.payload
+                ...action.payload,
             }
         default:
             return state
