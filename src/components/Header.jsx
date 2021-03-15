@@ -6,10 +6,26 @@ import Register from "./Register"
 import UserMenu from "./UserMenu"
 import LangMenu from "./LangMenu"
 import Login from "./Login"
+import SearchBar from "./SearchBar"
+import handleSearch from "../utils/search"
 
+const countriesDummy = [
+    {
+        name: "Kazakhstan",
+        capital: "Nur-Sultan",
+        previewURL:
+            "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcivilianglobal.com%2Fwp-content%2Fuploads%2F2014%2F04%2Fastana.jpg&f=1&nofb=1",
+    },
+    {
+        name: "Mongolia",
+        capital: "Ulaanbaatar",
+        previewURL:
+            "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.travelandleisure.com%2Fsites%2Fdefault%2Ffiles%2Fstyles%2F1600x1000%2Fpublic%2Fmongolia0815.jpg%3Fitok%3DEazvgF_w&f=1&nofb=1",
+    },
+]
 const useStyles = makeStyles((theme) => ({
     root: {
-        height: "3rem",
+        height: "fit-content",
         flexDirection: "row",
         justifyContent: "flex-end",
         alignItems: "center",
@@ -29,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
 const Header = ({ t }) => {
     const [isRegisterOpen, setIsRegisterOpen] = useState(false)
     const [isLoginOpen, setIsLoginOpen] = useState(false)
+    let [_, updateList] = useState(countriesDummy)
 
     const userState = useSelector((state) => state.user)
 
@@ -39,6 +56,8 @@ const Header = ({ t }) => {
     const handleLoginOpen = () => setIsLoginOpen(true)
 
     const handleLoginClose = () => setIsLoginOpen(false)
+    const handle = (request) =>
+        updateList(handleSearch(request, countriesDummy))
 
     const classes = useStyles()
     return (
@@ -78,6 +97,7 @@ const Header = ({ t }) => {
                     )}
 
                     {userState.username && <UserMenu user={userState} />}
+                    <SearchBar handleSearch={(request) => handle(request)} />
                 </>
             )}
             <LangMenu />

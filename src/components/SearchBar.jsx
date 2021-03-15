@@ -19,28 +19,26 @@ const useStyles = makeStyles((theme) => ({
         margin: "0.5rem 2rem",
         flex: 1,
     },
-    iconButton: {
-        margin: "0.5rem 2rem 0.5rem 0",
-    },
 }))
 
 export default function SearchBar(props) {
     const classes = useStyles()
     let [searchMsg, updateMsg] = useState("")
 
-   useEffect(() => {
-       if (!searchMsg) props.handleSearch(searchMsg)
+    useEffect(() => {
+        if (!searchMsg) props.handleSearch(searchMsg)
         // eslint-disable-next-line
     }, [searchMsg])
 
     return (
-        <Container maxWidth="md"
+        <Container
+            maxWidth="md"
             onSubmit={(event) => {
                 event.preventDefault()
                 props.handleSearch(searchMsg)
-            }}>
-            <Paper component="form" elevation={3} className={classes.root} >
-
+            }}
+        >
+            <Paper component="form" elevation={3} className={classes.root}>
                 <InputBase
                     value={searchMsg}
                     onChange={(event) => updateMsg(String(event.target.value))}
@@ -51,7 +49,6 @@ export default function SearchBar(props) {
                 <Zoom in={!!searchMsg}>
                     <IconButton
                         aria-label="close"
-                        className={classes.iconButton}
                         onClick={() => updateMsg("")}
                     >
                         <CloseIcon />
