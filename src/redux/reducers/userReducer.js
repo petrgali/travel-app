@@ -1,10 +1,9 @@
 import { UPDATE_USER } from "../actions/userActions"
 
 const initialState = {
-    uuid: "",
-    firstName: '',
-    lastName: '',
-    email: '',
+    username: null,
+    avatar: null,
+    isLoading: true,
 }
 
 export const userReducer = (state = initialState, action) => {
