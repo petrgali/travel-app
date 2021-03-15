@@ -17,6 +17,7 @@ const LangMenu = () => {
     const classes = useStyles()
     const [anchorEl, setAnchorEl] = useState(null)
     const languages = ["kz", "ru", "en"]
+
     const changeLanguage = (lng) => {
         i18n.changeLanguage(lng)
     }
