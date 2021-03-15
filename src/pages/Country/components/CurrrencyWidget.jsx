@@ -31,9 +31,7 @@ function CurrencyWidget({ t }) {
             .then(response => updateRates({ ...response.data.conversion_rates }))
         // eslint-disable-next-line
     }, [])
-
     return (
-        <>
             <List className={classes.root}
                 subheader={
                     <ListSubheader component="div" id="subheader">
@@ -63,7 +61,6 @@ function CurrencyWidget({ t }) {
                 </ListItem>
                 <Divider variant="inset" component="li" />
             </List>
-        </>
     )
 }
 export default withNamespaces()(CurrencyWidget)
