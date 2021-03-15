@@ -21,6 +21,7 @@ const UserMenu = ({ user }) => {
   const [anchorEl, setAnchorEl] = useState(null)
 
   const handleClick = (event) => {
+    console.log('clicked')
       setAnchorEl(event.currentTarget)
   }
 
@@ -36,15 +37,14 @@ const UserMenu = ({ user }) => {
   return (
     <>
       {user.avatar && (
-        <IconButton>
+        <IconButton onClick={handleClick}>
           <Avatar
             src={`data:image/jpeg;base64,${user.avatar}`}
-            onClick={handleClick}
           />
         </IconButton>
       )}
       {!user.avatar && (
-        <IconButton>
+        <IconButton onClick={handleClick}>
           <Avatar src="/broken-image.jpg" />
         </IconButton>
       )}
