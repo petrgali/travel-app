@@ -50,7 +50,7 @@ function CountryCard({ t, countries, handleClick }) {
                         >
                             <Card
                                 className={classes.card}
-                                onClick={handleClick}
+                                onClick={() => handleClick(card.id)}
                             >
                                 <CardMedia
                                     className={classes.cardMedia}

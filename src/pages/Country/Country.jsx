@@ -9,17 +9,30 @@ export function Country(props) {
     const id = props.match.params.id
 
     const dispatch = useDispatch()
-    const country = useSelector((state) => state.countryDetail.countryDetail)
+    const country = useSelector((state) => state.countryDetail)
+
     console.log(country)
     useEffect(() => {
         const _getCountryDetail = async () => {
+            dispatch(updateCountryDetail({ isLoading: true }))
             const res = await getCountryDetail(id)
-            if (res) dispatch(updateCountryDetail(res))
+            if (res)
+                dispatch(
+                    updateCountryDetail({
+                        countryDetail: res,
+                        isLoading: false,
+                    })
+                )
         }
         _getCountryDetail()
     }, [dispatch, id])
 
-    return <CountryDetail country={country}></CountryDetail>
+    return (
+        <CountryDetail
+            country={country.countryDetail}
+            isLoading={country.isLoading}
+        ></CountryDetail>
+    )
 }
 
 export default Country

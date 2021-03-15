@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core/styles"
 import Card from "@material-ui/core/Card"
 import CardContent from "@material-ui/core/CardContent"
 import CardMedia from "@material-ui/core/CardMedia"
+import CircularProgress from "@material-ui/core/CircularProgress"
 
 const useStyles = makeStyles({
     root: {
@@ -30,24 +31,30 @@ const useStyles = makeStyles({
     },
 })
 
-export const CountryDetail = ({ country }) => {
+export const CountryDetail = ({ country, isLoading }) => {
     const classes = useStyles()
 
     return (
-        <div className={classes.main}>
-            <Card className={classes.root}>
-                <CardMedia
-                    className={classes.cover}
-                    image={country.imageUrl}
-                    title={country.name}
-                />
-                <div className={classes.details}>
-                    <CardContent className={classes.content}>
-                        <h2>{country.name}</h2>
-                        <p>{country.description}</p>
-                    </CardContent>
+        <div>
+            {isLoading ? (
+                <CircularProgress />
+            ) : (
+                <div className={classes.main}>
+                    <Card className={classes.root}>
+                        <CardMedia
+                            className={classes.cover}
+                            image={country.imageUrl}
+                            title={country.name}
+                        />
+                        <div className={classes.details}>
+                            <CardContent className={classes.content}>
+                                <h2>{country.name}</h2>
+                                <p>{country.description}</p>
+                            </CardContent>
+                        </div>
+                    </Card>
                 </div>
-            </Card>
+            )}
         </div>
     )
 }

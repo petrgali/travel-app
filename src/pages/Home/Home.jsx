@@ -19,9 +19,8 @@ export default function Home() {
         _getCountries()
     }, [dispatch])
 
-    const handleClick = () => {
-        // hardcode
-        history.push("/country/60270368f347c8267c02a528")
+    const handleClick = (id) => {
+        history.push(`/country/${id}`)
     }
 
     return (

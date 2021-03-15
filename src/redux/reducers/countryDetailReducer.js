@@ -10,8 +10,7 @@ export const countryDetailReducer = (state = initialState, action) => {
         case UPDATE_COUNTRY_DETAIL:
             return {
                 ...state,
-                countryDetail: action.payload,
-                isLoading: false,
+                ...action.payload,
             }
         default:
             return state
