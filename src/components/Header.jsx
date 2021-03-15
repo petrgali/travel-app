@@ -34,6 +34,8 @@ const useStyles = makeStyles((theme) => ({
 
 const Header = ({ t }) => {
     const [isRegisterOpen, setIsRegisterOpen] = useState(false);
+    const [isLoginOpen, setIsLoginOpen] = useState(false);
+
     const userState = useSelector((state) => state.user)
 
     const handleRegisterOpen = () => setIsRegisterOpen(true)
