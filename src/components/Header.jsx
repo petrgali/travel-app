@@ -10,6 +10,8 @@ import { useSelector } from "react-redux"
 import Register from "./Register"
 import UserMenu from "./UserMenu"
 import LangMenu from "./LangMenu"
+import Login from "./Login"
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -38,6 +40,10 @@ const Header = ({ t }) => {
 
     const handleRegisterClose = () => setIsRegisterOpen(false)
 
+    const handleLoginOpen = () => setIsLoginOpen(true)
+
+    const handleLoginClose = () => setIsLoginOpen(false)
+
     const classes = useStyles()
     return (
         <AppBar position="fixed" className={classes.root}>
@@ -52,6 +58,16 @@ const Header = ({ t }) => {
               <>
                 {!userState.username && (
                   <>
+                    <Button
+                        className={classes.menuButton}
+                        onClick={handleLoginOpen}
+                    >
+                        Войти
+                    </Button>
+                    <Login
+                      isOpen={isLoginOpen}
+                      handleClose={handleLoginClose}
+                    />
                     <Button
                         className={classes.menuButton}
                         onClick={handleRegisterOpen}

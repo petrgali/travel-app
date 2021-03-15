@@ -1,5 +1,15 @@
 import React, { useState } from 'react';
-import { Button, Dialog, DialogTitle, Typography, DialogContent, IconButton, makeStyles, TextField, Snackbar, CircularProgress } from '@material-ui/core';
+import {
+  Button,
+  Dialog,
+  DialogTitle,
+  Typography,
+  DialogContent,
+  IconButton,
+  makeStyles,
+  TextField,
+  CircularProgress
+} from '@material-ui/core';
 import MuiAlert from '@material-ui/lab/Alert';
 import { Close } from '@material-ui/icons';
 import registerValidator from '../utils/validators';
@@ -16,19 +26,15 @@ const useStyles = makeStyles((theme) => ({
   dialogTitle: {
     fontWeight: 900,
   },
+  dialogContent: {
+    padding: 24,
+  },
   closeButton: {
     position: 'absolute',
     right: theme.spacing(1),
     top: theme.spacing(1),
     color: theme.palette.grey[500],
-  },
-  dropzone: {
-    height: 50,
-  },
-  previewChip: {
-    minWidth: 160,
-    maxWidth: 210
-  },
+  }
 }));
 
 const Register = (props) => {
@@ -81,7 +87,7 @@ const Register = (props) => {
           </IconButton>
         ) : null}
       </DialogTitle>
-      <DialogContent dividers>
+      <DialogContent className={classes.dialogContent} dividers>
         <form className={classes.form}>
           {service.error !== null && (
             <MuiAlert onClose={() => setService({ ...service, error: null })} severity="error">
