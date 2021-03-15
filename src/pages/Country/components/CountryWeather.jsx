@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import getWeather from "../../../utils/getWeather"
+import getWeather from "../../../services/getWeather"
 import { makeStyles } from "@material-ui/core"
 import CircularProgress from "@material-ui/core/CircularProgress"
 import Card from '@material-ui/core/Card'
@@ -21,15 +21,17 @@ const useStyles = makeStyles((theme) => ({
         flex: '1 0 auto',
     },
     cover: {
-        display: "flex",
-        flexDirection: "column",
         height: 110,
-        width:150
+        width: 150
     },
     icon: {
         width: 90,
         height: 90,
-        margin:"auto"
+        margin: "auto"
+    },
+    description: {
+        display: "flex",
+        justifyContent: "center"
     },
     stat: {
         display: 'flex',
@@ -83,11 +85,11 @@ export default function CountryWeather() {
                         image={weatherIcon}
                         title="weather icon"
                     />
-                    <Typography variant="subtitle1">
+                    <Typography variant="subtitle1" className={classes.description}>
                         {weatherData.weather[0].description}
                     </Typography>
                 </div>
-            </Card>
+            </Card >
         )
     return (
         <CircularProgress />
