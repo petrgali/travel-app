@@ -59,7 +59,7 @@ function CountryCard({ t, countries, handleClick }) {
                                 />
                                 <CardContent className={classes.cardContent}>
                                     <h5>{card.name}</h5>
-                                    <p>{card.description}</p>
+                                    <p>{card.capital}</p>
                                 </CardContent>
                             </Card>
                         </Grid>
