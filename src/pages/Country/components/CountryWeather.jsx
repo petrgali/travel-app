@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react"
 import getWeather from "../../../services/getWeather"
 import { makeStyles } from "@material-ui/core"
-import CircularProgress from "@material-ui/core/CircularProgress"
-import Card from "@material-ui/core/Card"
-import CardContent from "@material-ui/core/CardContent"
-import CardMedia from "@material-ui/core/CardMedia"
-import Typography from "@material-ui/core/Typography"
+import {
+    Card,
+    CardContent,
+    CardMedia,
+    Typography,
+    CircularProgress,
+} from "@material-ui/core"
 
 const weather = getWeather()
 const useStyles = makeStyles((theme) => ({
