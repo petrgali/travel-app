@@ -32,6 +32,11 @@ export default function SearchBar() {
         dispatch(updateSearch(request))
     }
 
+    useEffect(() => {
+        if (!searchMsg) dispatch(updateSearch(searchMsg))
+        // eslint-disable-next-line
+    }, [searchMsg])
+
     return (
         <Container
             maxWidth="md"
@@ -45,7 +50,6 @@ export default function SearchBar() {
                     value={searchMsg}
                     onChange={(event) => {
                         updateMsg(String(event.target.value))
-                        _handleSearch(event.target.value)
                     }}
                     autoFocus
                     className={classes.input}
