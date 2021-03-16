@@ -7,7 +7,6 @@ import getCountryDetail from "../../services/getCountryDetail"
 import CountryDetail from "./components/CountryDetail"
 import CountryVideo from "./components/CountryVideo"
 import CountryGallery from "./components/CountryGallery"
-import Grid from "@material-ui/core/Grid"
 import CountryWeather from "./components/CountryWeather"
 export function Country(props) {
     const id = props.match.params.id
@@ -36,19 +35,14 @@ export function Country(props) {
                 country={country.countryDetail}
                 isLoading={country.isLoading}
             ></CountryDetail>
-            <Grid container className={"col"}>
-                <Grid item xs={6}>
-                    <CountryVideo
-                        url={country.countryDetail.videoUrl}
-                        poster={country.countryDetail.imageUrl}
-                    />
-                </Grid>
-                <Grid item xs={6}>
-                    {country.countryDetail.places && (
-                        <CountryGallery images={country.countryDetail.places} />
-                    )}
-                </Grid>
-            </Grid>
+            <CountryVideo
+                url={country.countryDetail.videoUrl}
+                poster={country.countryDetail.imageUrl}
+            />
+
+            {country.countryDetail.places && (
+                <CountryGallery images={country.countryDetail.places} />
+            )}
         </div>
     )
 }

@@ -34,7 +34,7 @@ export default function CountryGallery({ images }) {
                     <ImageGallery
                         items={modImages}
                         showPlayButton={false}
-                        showThumbnails={false}
+                        showThumbnails={true}
                     />
                 </Card>
             </div>
