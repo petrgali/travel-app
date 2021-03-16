@@ -8,6 +8,9 @@ import LangMenu from "./LangMenu"
 import Login from "./Login"
 import SearchBar from "./SearchBar"
 
+import Icon from "@material-ui/core/Icon"
+import Logo from "../assets/logo.svg"
+
 const useStyles = makeStyles((theme) => ({
     root: {
         height: "fit-content",
@@ -21,6 +24,9 @@ const useStyles = makeStyles((theme) => ({
         "&:hover": {
             background: "white",
         },
+    },
+    logo: {
+        paddingLeft: "1rem",
     },
     loading: {
         marginRight: 16,
@@ -51,6 +57,9 @@ const Header = ({ t }) => {
                     color="white"
                 />
             )}
+            <Icon className={classes.logo}>
+                <img src={Logo} alt="" />
+            </Icon>
             {!userState.isLoading && (
                 <>
                     {!userState.username && (
@@ -77,6 +86,7 @@ const Header = ({ t }) => {
                             />
                         </>
                     )}
+
                     <SearchBar />
 
                     {userState.username && <UserMenu user={userState} />}
