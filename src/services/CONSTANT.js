@@ -1,3 +1,5 @@
+const EXCHANGE_API_KEY = "f6844e51de75798ecb816565"
+export const EXCHANGE_API_URL = `https://v6.exchangerate-api.com/v6/${EXCHANGE_API_KEY}/latest/`
 export const API_KEY = "fb84a4098f1dd8bf31f9b8e65be9b3c6"
 export const API_URL = "http://api.openweathermap.org/data/2.5/weather?q="
 export const ICON_PATH = {
