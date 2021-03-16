@@ -104,4 +104,8 @@ a {
     .country {
         padding: 1rem 0 3rem;
     }
+
+    button.close {
+        display: none;
+    }
 }

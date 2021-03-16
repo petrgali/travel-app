@@ -15,7 +15,7 @@ import Login from "./Login"
 import SearchBar from "./SearchBar"
 import ExitToAppRoundedIcon from "@material-ui/icons/ExitToAppRounded"
 import Icon from "@material-ui/core/Icon"
-import Logo from "../../assets/logo.svg"
+import Logo from "../../assets/logo_white.svg"
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -30,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
         color: "white",
     },
     logo: {
+        width: "1.7rem",
         paddingLeft: "1rem",
     },
     loading: {
@@ -62,7 +63,7 @@ const Header = ({ t }) => {
                 />
             )}
             <Icon className={classes.logo}>
-                <img src={Logo} alt="" />
+                <img src={Logo} alt="" width={25} />
             </Icon>
             <SearchBar />
 

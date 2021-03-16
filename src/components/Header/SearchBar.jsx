@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
         alignItems: "center",
     },
     input: {
-        margin: "0.5rem 2rem",
+        margin: "0.5rem",
         flex: 1,
     },
 }))
@@ -57,6 +57,7 @@ export default function SearchBar() {
                 />
                 <Zoom in={!!searchMsg}>
                     <IconButton
+                        className="close"
                         aria-label="close"
                         onClick={() => updateMsg("")}
                     >
