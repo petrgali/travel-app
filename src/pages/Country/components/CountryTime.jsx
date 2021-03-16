@@ -24,7 +24,7 @@ const useStyles = makeStyles(() => ({
 const CapitalizeFirstLetter = (string) => string
     .split(" ")
     .map(word => word[0].toUpperCase() + word.slice(1))
-    .join(' ')
+    .join(" ")
 
 
 export default function CountryTime() {
