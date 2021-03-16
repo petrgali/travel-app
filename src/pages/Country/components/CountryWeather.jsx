@@ -1,45 +1,50 @@
 import { useEffect, useState } from "react"
 import getWeather from "../../../services/getWeather"
 import { makeStyles } from "@material-ui/core"
-import CircularProgress from "@material-ui/core/CircularProgress"
-import Card from '@material-ui/core/Card'
-import CardContent from '@material-ui/core/CardContent'
-import CardMedia from '@material-ui/core/CardMedia'
-import Typography from '@material-ui/core/Typography'
-
+import {
+    Card,
+    CardContent,
+    CardMedia,
+    Typography,
+    CircularProgress,
+} from "@material-ui/core"
 
 const weather = getWeather()
 const useStyles = makeStyles((theme) => ({
     root: {
-        display: 'flex',
+        display: "flex",
+        width: "fit-content",
+        height: "10rem",
+        background:
+            "linear-gradient(90deg, rgba(250,217,97,1) 0%, rgba(247,107,28,1) 100%)",
+        margin: "0 3rem",
     },
     details: {
-        display: 'flex',
-        flexDirection: 'column',
+        display: "flex",
+        flexDirection: "column",
     },
     content: {
-        flex: '1 0 auto',
+        flex: "1 0 auto",
     },
     cover: {
         height: 110,
-        width: 150
+        width: 150,
     },
     icon: {
         width: 90,
         height: 90,
-        margin: "auto"
+        margin: "auto",
     },
     description: {
         display: "flex",
-        justifyContent: "center"
+        justifyContent: "center",
     },
     stat: {
-        display: 'flex',
+        display: "flex",
         width: 100,
         flexDirection: "column",
         paddingBottom: theme.spacing(1),
     },
-
 }))
 export default function CountryWeather() {
     const classes = useStyles()
@@ -47,35 +52,26 @@ export default function CountryWeather() {
     let [weatherIcon, updateIcon] = useState("")
     let requestConfig = {
         city: "Nur-Sultan",
-        lang: "ru"
+        lang: "ru",
     }
     useEffect(() => {
-        weather.current(requestConfig)
-            .then(response => {
-                updateWeather({ ...response })
-                updateIcon(weather.getIcon(response.weather[0].icon))
-            })
-        // eslint-disable-next-line 
+        weather.current(requestConfig).then((response) => {
+            updateWeather({ ...response })
+            updateIcon(weather.getIcon(response.weather[0].icon))
+        })
+        // eslint-disable-next-line
     }, [])
     if (weatherIcon)
         return (
             <Card className={classes.root}>
                 <div className={classes.details}>
                     <CardContent className={classes.content}>
-                        <Typography component="h2" variant="h2">
-                            {weatherData.name}
-                        </Typography>
-
                         <Typography variant="h2">
                             {+weatherData.main.temp.toFixed()}&deg;
                         </Typography>
                         <div className={classes.stat}>
-                            <Typography variant="subtitle2">
-                                Влажность {weatherData.main.humidity}%
-                        </Typography>
-                            <Typography variant="subtitle2">
-                                Ветер {weatherData.wind.speed} м/сек
-                            </Typography>
+                            <p>Влажность {weatherData.main.humidity}%</p>
+                            <p>Ветер {weatherData.wind.speed} м/сек</p>
                         </div>
                     </CardContent>
                 </div>
@@ -85,13 +81,9 @@ export default function CountryWeather() {
                         image={weatherIcon}
                         title="weather icon"
                     />
-                    <Typography variant="subtitle1" className={classes.description}>
-                        {weatherData.weather[0].description}
-                    </Typography>
+                    <p> {weatherData.weather[0].description}</p>
                 </div>
-            </Card >
+            </Card>
         )
-    return (
-        <CircularProgress />
-    )
+    return <CircularProgress />
 }

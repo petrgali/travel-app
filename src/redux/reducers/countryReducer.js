@@ -11,7 +11,7 @@ export function countryReducer(state = initialState, action) {
             return {
                 ...state,
                 countries: action.payload,
-                loading: false,
+                isLoading: false,
             }
         default:
             return state

@@ -1,16 +1,31 @@
-import { useState } from "react"
+import { useEffect } from "react"
 import CountryCard from "./components/CountryCard"
-import SearchBar from "./components/SearchBar"
-import handleSearch from "../../utils/search"
-import {countriesDummy} from "../CONSTANT"
+import { useSelector, useDispatch } from "react-redux"
+import { updateCountries } from "../../redux/actions/countryActions"
+import { useHistory } from "react-router-dom"
+
+import getCountries from "../../services/getCountries"
 
 export default function Home() {
-    let [countriesList, updateList] = useState(countriesDummy)
-    const handle = (request) => updateList(handleSearch(request, countriesDummy))
+    const history = useHistory()
+    const dispatch = useDispatch()
+    const countries = useSelector((state) => state.country.countries)
+
+    useEffect(() => {
+        const _getCountries = async () => {
+            const res = await getCountries()
+            if (res) dispatch(updateCountries(res))
+        }
+        _getCountries()
+    }, [dispatch])
+
+    const handleClick = (id) => {
+        history.push(`/country/${id}`)
+    }
+
     return (
         <>
-            <SearchBar handleSearch={(request) => handle(request)} />
-            <CountryCard countries={countriesList} />
+            <CountryCard countries={countries} handleClick={handleClick} />
         </>
     )
 }

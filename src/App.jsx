@@ -14,13 +14,13 @@ import { me } from "./services/auth"
 import { updateUser } from "./redux/actions/userActions"
 
 export const App = () => {
-  const dispatch = useDispatch()
-  
-  useEffect(() => {
-    me()
-      .then((user) => dispatch(updateUser({ ...user, isLoading: false })))
-      .catch(() => dispatch(updateUser({ isLoading: false })))
-  }, [dispatch])
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        me()
+            .then((user) => dispatch(updateUser({ ...user, isLoading: false })))
+            .catch(() => dispatch(updateUser({ isLoading: false })))
+    }, [dispatch])
 
     return (
         <div>

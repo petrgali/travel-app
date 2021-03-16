@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { makeStyles, Button, Menu, MenuItem } from "@material-ui/core"
 import { withNamespaces } from "react-i18next"
-import i18n from "../i18n/i18n"
+import i18n from "../../i18n/i18n"
 
 const useStyles = makeStyles((theme) => ({
     menuButton: {
@@ -17,6 +17,7 @@ const LangMenu = () => {
     const classes = useStyles()
     const [anchorEl, setAnchorEl] = useState(null)
     const languages = ["kz", "ru", "en"]
+
     const changeLanguage = (lng) => {
         i18n.changeLanguage(lng)
     }

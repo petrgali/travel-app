@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React from "react"
 import {
     Container,
     Grid,
@@ -8,11 +8,6 @@ import {
 } from "@material-ui/core"
 import { makeStyles } from "@material-ui/core/styles"
 import { withNamespaces } from "react-i18next"
-
-import { useSelector, useDispatch } from "react-redux"
-import { updateCountries } from "../../../redux/actions/countryActions"
-
-import getCountries from "../../../services/getCountries"
 
 const useStyles = makeStyles((theme) => ({
     cardMedia: {
@@ -36,22 +31,9 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-function CountryCard({ t }) {
-    const dispatch = useDispatch()
-    const countries = useSelector((state) => state.country.countries)
-
-    useEffect(() => {
-        const _getCountries = async () => {
-            const res = await getCountries()
-            if (res) dispatch(updateCountries(res))
-        }
-        _getCountries()
-    }, [dispatch])
-
+function CountryCard({ t, countries, handleClick }) {
     const classes = useStyles()
-    const handleClick = () => {
-        console.log("Clicked")
-    }
+
     return (
         <Container className={classes.cardGrid} maxWidth="md">
             <h1>{t("Welcome")}</h1>
@@ -68,7 +50,7 @@ function CountryCard({ t }) {
                         >
                             <Card
                                 className={classes.card}
-                                onClick={handleClick}
+                                onClick={() => handleClick(card.id)}
                             >
                                 <CardMedia
                                     className={classes.cardMedia}
@@ -77,7 +59,7 @@ function CountryCard({ t }) {
                                 />
                                 <CardContent className={classes.cardContent}>
                                     <h5>{card.name}</h5>
-                                    <p>{card.description}</p>
+                                    <p>{card.capital}</p>
                                 </CardContent>
                             </Card>
                         </Grid>
