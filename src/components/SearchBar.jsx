@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import {
     Container,
     IconButton,
@@ -9,6 +9,8 @@ import {
 import SearchIcon from "@material-ui/icons/Search"
 import CloseIcon from "@material-ui/icons/Close"
 import Zoom from "@material-ui/core/Zoom"
+import { useDispatch } from "react-redux"
+import { updateSearch } from "../redux/actions/searchActions"
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -21,27 +23,30 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-export default function SearchBar(props) {
+export default function SearchBar() {
     const classes = useStyles()
-    let [searchMsg, updateMsg] = useState("")
+    const [searchMsg, updateMsg] = useState("")
+    const dispatch = useDispatch()
 
-    useEffect(() => {
-        if (!searchMsg) props.handleSearch(searchMsg)
-        // eslint-disable-next-line
-    }, [searchMsg])
+    const _handleSearch = (request) => {
+        dispatch(updateSearch(request))
+    }
 
     return (
         <Container
             maxWidth="md"
             onSubmit={(event) => {
                 event.preventDefault()
-                props.handleSearch(searchMsg)
+                _handleSearch(searchMsg)
             }}
         >
             <Paper component="form" elevation={3} className={classes.root}>
                 <InputBase
                     value={searchMsg}
-                    onChange={(event) => updateMsg(String(event.target.value))}
+                    onChange={(event) => {
+                        updateMsg(String(event.target.value))
+                        _handleSearch(event.target.value)
+                    }}
                     autoFocus
                     className={classes.input}
                     placeholder="search..."
