@@ -3,7 +3,6 @@ import CountryCard from "./components/CountryCard"
 import { useSelector, useDispatch } from "react-redux"
 import { updateCountries } from "../../redux/actions/countryActions"
 import { useHistory } from "react-router-dom"
-
 import getCountries from "../../services/getCountries"
 
 export default function Home() {
