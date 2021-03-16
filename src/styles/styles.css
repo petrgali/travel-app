@@ -104,11 +104,4 @@ a {
     .country {
         padding: 0 0 3rem;
     }
-    .col {
-        flex-direction: column;
-    }
-    .MuiGrid-grid-xs-6 {
-        max-width: 100% !important;
-        padding-bottom: 7rem;
-    }
 }
