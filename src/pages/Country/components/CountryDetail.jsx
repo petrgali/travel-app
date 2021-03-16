@@ -5,7 +5,7 @@ import Card from "@material-ui/core/Card"
 import CardContent from "@material-ui/core/CardContent"
 import CardMedia from "@material-ui/core/CardMedia"
 import CircularProgress from "@material-ui/core/CircularProgress"
-
+import { useSelector } from "react-redux"
 const useStyles = makeStyles({
     root: {
         display: "flex",
@@ -31,12 +31,13 @@ const useStyles = makeStyles({
     },
 })
 
-export const CountryDetail = ({ country, isLoading }) => {
+export const CountryDetail = () => {
     const classes = useStyles()
+    const country = useSelector((state) => state.countryDetail.countryDetail)
 
     return (
         <div>
-            {isLoading ? (
+            {country.isLoading ? (
                 <CircularProgress />
             ) : (
                 <div className={classes.main}>

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import { useSelector, useDispatch } from "react-redux"
+import { useDispatch } from "react-redux"
 import { updateCountryDetail } from "../../redux/actions/countryDetailActions"
 
 import getCountryDetail from "../../services/getCountryDetail"
@@ -12,7 +12,6 @@ export function Country(props) {
     const id = props.match.params.id
 
     const dispatch = useDispatch()
-    const country = useSelector((state) => state.countryDetail)
     useEffect(() => {
         const _getCountryDetail = async () => {
             dispatch(updateCountryDetail({ isLoading: true }))
@@ -31,18 +30,9 @@ export function Country(props) {
     return (
         <div className="country">
             <CountryWeather />
-            <CountryDetail
-                country={country.countryDetail}
-                isLoading={country.isLoading}
-            ></CountryDetail>
-            <CountryVideo
-                url={country.countryDetail.videoUrl}
-                poster={country.countryDetail.imageUrl}
-            />
-
-            {country.countryDetail.places && (
-                <CountryGallery images={country.countryDetail.places} />
-            )}
+            <CountryDetail />
+            <CountryVideo />
+            <CountryGallery />
         </div>
     )
 }
