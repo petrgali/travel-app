@@ -10,7 +10,7 @@ import SearchIcon from "@material-ui/icons/Search"
 import CloseIcon from "@material-ui/icons/Close"
 import Zoom from "@material-ui/core/Zoom"
 import { useDispatch } from "react-redux"
-import { updateSearch } from "../redux/actions/searchActions"
+import { updateSearch } from "../../redux/actions/searchActions"
 
 const useStyles = makeStyles((theme) => ({
     root: {

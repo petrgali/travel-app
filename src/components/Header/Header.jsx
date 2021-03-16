@@ -15,7 +15,7 @@ import Login from "./Login"
 import SearchBar from "./SearchBar"
 import ExitToAppRoundedIcon from "@material-ui/icons/ExitToAppRounded"
 import Icon from "@material-ui/core/Icon"
-import Logo from "../assets/logo.svg"
+import Logo from "../../assets/logo.svg"
 
 const useStyles = makeStyles((theme) => ({
     root: {

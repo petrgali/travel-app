@@ -8,12 +8,10 @@ import {
 } from "@material-ui/core"
 import { makeStyles } from "@material-ui/core/styles"
 import { withNamespaces } from "react-i18next"
-
 import { useSelector, useDispatch } from "react-redux"
 import { updateCountries } from "../../../redux/actions/countryActions"
-
+import { useHistory } from "react-router-dom"
 import getCountries from "../../../services/getCountries"
-
 const useStyles = makeStyles((theme) => ({
     cardMedia: {
         height: 150,
@@ -36,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 function CountryCard({ t }) {
+    const history = useHistory()
     const dispatch = useDispatch()
     const countries = useSelector((state) => state.country.countries)
     const search = useSelector((state) => state.search.search)
@@ -48,8 +47,8 @@ function CountryCard({ t }) {
     }, [dispatch])
 
     const classes = useStyles()
-    const handleClick = () => {
-        console.log("Clicked")
+    const handleClick = (id) => {
+        history.push(`/country/${id}`)
     }
     return (
         <Container className={classes.cardGrid} maxWidth="md">
@@ -77,7 +76,7 @@ function CountryCard({ t }) {
                             >
                                 <Card
                                     className={classes.card}
-                                    onClick={handleClick}
+                                    onClick={handleClick(card.id)}
                                 >
                                     <CardMedia
                                         className={classes.cardMedia}
