@@ -76,7 +76,7 @@ function CountryCard({ t }) {
                             >
                                 <Card
                                     className={classes.card}
-                                    onClick={handleClick(card.id)}
+                                    onClick={() => handleClick(card.id)}
                                 >
                                     <CardMedia
                                         className={classes.cardMedia}
@@ -87,7 +87,7 @@ function CountryCard({ t }) {
                                         className={classes.cardContent}
                                     >
                                         <h5>{card.name}</h5>
-                                        <p>{card.description}</p>
+                                        <p>{card.capital}</p>
                                     </CardContent>
                                 </Card>
                             </Grid>
