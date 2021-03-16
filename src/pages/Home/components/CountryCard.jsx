@@ -20,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
     },
     cardContent: {
         maxHeight: "8rem",
-        overflow: "scroll",
         flexGrow: 1,
         backgroundColor: "white",
     },

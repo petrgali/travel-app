@@ -1,5 +1,11 @@
 import React, { useState } from "react"
-import { makeStyles, CircularProgress, AppBar, Button } from "@material-ui/core"
+import {
+    makeStyles,
+    CircularProgress,
+    AppBar,
+    Button,
+    IconButton,
+} from "@material-ui/core"
 import { withNamespaces } from "react-i18next"
 import { useSelector } from "react-redux"
 import Register from "./Register"
@@ -7,7 +13,7 @@ import UserMenu from "./UserMenu"
 import LangMenu from "./LangMenu"
 import Login from "./Login"
 import SearchBar from "./SearchBar"
-
+import ExitToAppRoundedIcon from "@material-ui/icons/ExitToAppRounded"
 import Icon from "@material-ui/core/Icon"
 import Logo from "../assets/logo.svg"
 
@@ -19,11 +25,9 @@ const useStyles = makeStyles((theme) => ({
         alignItems: "center",
     },
     menuButton: {
-        marginRight: theme.spacing(2),
-        background: "white",
-        "&:hover": {
-            background: "white",
-        },
+        margin: theme.spacing(2),
+        textTransform: "none",
+        color: "white",
     },
     logo: {
         paddingLeft: "1rem",
@@ -60,16 +64,18 @@ const Header = ({ t }) => {
             <Icon className={classes.logo}>
                 <img src={Logo} alt="" />
             </Icon>
+            <SearchBar />
+
             {!userState.isLoading && (
                 <>
                     {!userState.username && (
                         <>
-                            <Button
+                            <IconButton
                                 className={classes.menuButton}
                                 onClick={handleLoginOpen}
                             >
-                                Войти
-                            </Button>
+                                <ExitToAppRoundedIcon />
+                            </IconButton>
                             <Login
                                 isOpen={isLoginOpen}
                                 handleClose={handleLoginClose}
@@ -86,8 +92,6 @@ const Header = ({ t }) => {
                             />
                         </>
                     )}
-
-                    <SearchBar />
 
                     {userState.username && <UserMenu user={userState} />}
                 </>
