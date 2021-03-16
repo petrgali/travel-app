@@ -2,9 +2,9 @@ import i18n from "i18next"
 import detector from "i18next-browser-languagedetector"
 import { reactI18nextModule } from "react-i18next"
 
-import translationEN from "./i18n/locales/en/translation.json"
-import translationRU from "./i18n/locales/ru/translation.json"
-import translationKZ from "./i18n/locales/kz/translation.json"
+import translationEN from "./locales/en/translation.json"
+import translationRU from "./locales/ru/translation.json"
+import translationKZ from "./locales/kz/translation.json"
 
 // the translations
 const resources = {

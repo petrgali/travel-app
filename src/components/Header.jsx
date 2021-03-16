@@ -1,18 +1,18 @@
-import React from "react"
-import { makeStyles } from "@material-ui/core/styles"
-import AppBar from "@material-ui/core/AppBar"
-import Button from "@material-ui/core/Button"
-import Menu from "@material-ui/core/Menu"
-import MenuItem from "@material-ui/core/MenuItem"
-
-import i18n from "../i18n"
+import React, { useState } from "react"
+import { makeStyles, CircularProgress, AppBar, Button } from "@material-ui/core"
 import { withNamespaces } from "react-i18next"
+import { useSelector } from "react-redux"
+import Register from "./Register"
+import UserMenu from "./UserMenu"
+import LangMenu from "./LangMenu"
+import Login from "./Login"
 
 const useStyles = makeStyles((theme) => ({
     root: {
         height: "3rem",
-        justifyContent: "center",
-        alignItems: "flex-end",
+        flexDirection: "row",
+        justifyContent: "flex-end",
+        alignItems: "center",
     },
     menuButton: {
         marginRight: theme.spacing(2),
@@ -21,54 +21,66 @@ const useStyles = makeStyles((theme) => ({
             background: "white",
         },
     },
+    loading: {
+        marginRight: 16,
+    },
 }))
 
 const Header = ({ t }) => {
-    const [anchorEl, setAnchorEl] = React.useState(null)
+    const [isRegisterOpen, setIsRegisterOpen] = useState(false)
+    const [isLoginOpen, setIsLoginOpen] = useState(false)
 
-    const languages = ["kz", "ru", "en"]
-    const changeLanguage = (lng) => {
-        i18n.changeLanguage(lng)
-    }
+    const userState = useSelector((state) => state.user)
 
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget)
-    }
+    const handleRegisterOpen = () => setIsRegisterOpen(true)
 
-    const handleClose = (e) => {
-        const { myValue } = e.currentTarget.dataset
-        changeLanguage(myValue)
-        setAnchorEl(null)
-    }
+    const handleRegisterClose = () => setIsRegisterOpen(false)
+
+    const handleLoginOpen = () => setIsLoginOpen(true)
+
+    const handleLoginClose = () => setIsLoginOpen(false)
 
     const classes = useStyles()
     return (
         <AppBar position="fixed" className={classes.root}>
-            <Button
-                aria-controls="simple-menu"
-                aria-haspopup="true"
-                onClick={handleClick}
-                className={classes.menuButton}
-            >
-                {i18n.language}
-            </Button>
-            <Menu
-                id="simple-menu"
-                anchorEl={anchorEl}
-                keepMounted
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-            >
-                {languages.map((lang, idx) => (
-                    <MenuItem
-                        key={idx}
-                        data-my-value={lang}
-                        onClick={handleClose}
-                    >
-                        {lang}
-                    </MenuItem>
-                ))}
-            </Menu>
+            {userState.isLoading && (
+                <CircularProgress
+                    className={classes.loading}
+                    size={24}
+                    color="white"
+                />
+            )}
+            {!userState.isLoading && (
+                <>
+                    {!userState.username && (
+                        <>
+                            <Button
+                                className={classes.menuButton}
+                                onClick={handleLoginOpen}
+                            >
+                                Войти
+                            </Button>
+                            <Login
+                                isOpen={isLoginOpen}
+                                handleClose={handleLoginClose}
+                            />
+                            <Button
+                                className={classes.menuButton}
+                                onClick={handleRegisterOpen}
+                            >
+                                Регистрация
+                            </Button>
+                            <Register
+                                isOpen={isRegisterOpen}
+                                handleClose={handleRegisterClose}
+                            />
+                        </>
+                    )}
+
+                    {userState.username && <UserMenu user={userState} />}
+                </>
+            )}
+            <LangMenu />
         </AppBar>
     )
 }

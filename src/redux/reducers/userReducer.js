@@ -1,10 +1,9 @@
 import { UPDATE_USER } from "../actions/userActions"
 
 const initialState = {
-    uuid: "",
-    firstName: '',
-    lastName: '',
-    email: '',
+    username: null,
+    avatar: null,
+    isLoading: true,
 }
 
 export const userReducer = (state = initialState, action) => {
@@ -12,7 +11,7 @@ export const userReducer = (state = initialState, action) => {
         case UPDATE_USER:
             return {
                 ...state,
-                ...action.payload
+                ...action.payload,
             }
         default:
             return state

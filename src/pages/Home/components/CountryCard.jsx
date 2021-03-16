@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import {
     Container,
     Grid,
@@ -9,11 +9,18 @@ import {
 import { makeStyles } from "@material-ui/core/styles"
 import { withNamespaces } from "react-i18next"
 
+import { useSelector, useDispatch } from "react-redux"
+import { updateCountries } from "../../../redux/actions/countryActions"
+
+import getCountries from "../../../services/getCountries"
+
 const useStyles = makeStyles((theme) => ({
     cardMedia: {
         height: 150,
     },
     cardContent: {
+        maxHeight: "8rem",
+        overflow: "scroll",
         flexGrow: 1,
         backgroundColor: "white",
     },
@@ -29,8 +36,18 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-function CountryCard(props) {
-    let { t } = props
+function CountryCard({ t }) {
+    const dispatch = useDispatch()
+    const countries = useSelector((state) => state.country.countries)
+
+    useEffect(() => {
+        const _getCountries = async () => {
+            const res = await getCountries()
+            if (res) dispatch(updateCountries(res))
+        }
+        _getCountries()
+    }, [dispatch])
+
     const classes = useStyles()
     const handleClick = () => {
         console.log("Clicked")
@@ -39,7 +56,7 @@ function CountryCard(props) {
         <Container className={classes.cardGrid} maxWidth="md">
             <h1>{t("Welcome")}</h1>
             <Grid container spacing={4}>
-                {props.countries.map((card, index) => {
+                {countries.map((card, index) => {
                     return (
                         <Grid
                             item
@@ -55,14 +72,12 @@ function CountryCard(props) {
                             >
                                 <CardMedia
                                     className={classes.cardMedia}
-                                    image={card.previewURL}
+                                    image={card.imageUrl}
                                     title="Image Title"
                                 />
                                 <CardContent className={classes.cardContent}>
                                     <h5>{card.name}</h5>
-                                    <p>{card.capital} , тут обязательно должен
-                                        побывать каждый
-                                    </p>
+                                    <p>{card.description}</p>
                                 </CardContent>
                             </Card>
                         </Grid>
