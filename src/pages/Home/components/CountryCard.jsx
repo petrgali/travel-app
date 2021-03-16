@@ -14,6 +14,8 @@ const useStyles = makeStyles((theme) => ({
         height: 150,
     },
     cardContent: {
+        maxHeight: "8rem",
+        overflow: "scroll",
         flexGrow: 1,
         backgroundColor: "white",
     },
@@ -29,17 +31,14 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-function CountryCard(props) {
-    let { t } = props
+function CountryCard({ t, countries, handleClick }) {
     const classes = useStyles()
-    const handleClick = () => {
-        console.log("Clicked")
-    }
+
     return (
         <Container className={classes.cardGrid} maxWidth="md">
             <h1>{t("Welcome")}</h1>
             <Grid container spacing={4}>
-                {props.countries.map((card, index) => {
+                {countries.map((card, index) => {
                     return (
                         <Grid
                             item
@@ -51,18 +50,16 @@ function CountryCard(props) {
                         >
                             <Card
                                 className={classes.card}
-                                onClick={handleClick}
+                                onClick={() => handleClick(card.id)}
                             >
                                 <CardMedia
                                     className={classes.cardMedia}
-                                    image={card.previewURL}
+                                    image={card.imageUrl}
                                     title="Image Title"
                                 />
                                 <CardContent className={classes.cardContent}>
                                     <h5>{card.name}</h5>
-                                    <p>{card.capital} , тут обязательно должен
-                                        побывать каждый
-                                    </p>
+                                    <p>{card.capital}</p>
                                 </CardContent>
                             </Card>
                         </Grid>

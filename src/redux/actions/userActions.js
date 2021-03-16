@@ -1,6 +1,5 @@
-export const UPDATE_USER = 'UPDATE_USER'
-
+import { UPDATE_USER } from "../types"
 export const updateUser = (user) => ({
     type: UPDATE_USER,
-    payload: { ...user }
+    payload: { ...user },
 })

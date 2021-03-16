@@ -1,14 +1,13 @@
-import { UPDATE_USER } from "../types"
+import { UPDATE_COUNTRY_DETAIL } from "../types"
 
 const initialState = {
-    username: null,
-    avatar: null,
+    countryDetail: "",
     isLoading: true,
 }
 
-export const userReducer = (state = initialState, action) => {
+export const countryDetailReducer = (state = initialState, action) => {
     switch (action.type) {
-        case UPDATE_USER:
+        case UPDATE_COUNTRY_DETAIL:
             return {
                 ...state,
                 ...action.payload,
