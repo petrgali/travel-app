@@ -1,7 +1,23 @@
 {
     "Welcome": "Қош келдіңіз!",
+    "Watch video": "Бейнені қараңыз",
+    "Humidity": "Ылғалдылық ",
+    "Thunderstorm": "Найзағай",
+    "Drizzle": "Жаңбыр себіңіз",
+    "Rain": "Жаңбыр",
+    "Snow": "Қар",
+    "Clouds": "Бұлт",
+    "Clear": "Таза",
+    "Mist": "Тұман",
+    "Smoke": "Түтін",
+    "Haze": "Тұман",
+    "Fog": "Тұман ",
+    "Gallery": "Галереясы",
     "Exchange rates": "Валюта айырбастау",
-    "USD/KZT": "ДОЛЛ/ТГ",
-    "EUR/KZT": "ЕУР/ТГ",
-    "RUB/KZT": "РУБ/ТГ"
+    "USD/KZT": "доллар",
+    "EUR/KZT": "еуро",
+    "RUB/KZT": "ресей рубль",
+    "LogIn": "Кіру",
+    "SignIn": "Tіркелу",
+    "Country on map": "Картадағы ел"
 }

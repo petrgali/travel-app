@@ -61,13 +61,13 @@ const Header = ({ t }) => {
     const classes = useStyles()
     return (
         <AppBar position="fixed" className={classes.root}>
+
           <Grid container spacing={2} justify="space-between">
             <Grid className={classes.logo} item xs="auto" sm="auto">
               <Icon>
                   <img src={Logo} alt="logo" width={25} />
               </Icon>
             </Grid>
-
             {!location.pathname.includes('country') && (
               <Box clone order={{ xs: 3, sm: 2 }}>
                 <Grid item alignContent="center" xs={12} sm>

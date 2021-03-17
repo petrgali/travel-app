@@ -1,7 +1,23 @@
 {
     "Welcome": "Добро пожаловать",
-    "Exchange rates": "Курсы валют",
-    "USD/KZT": "ДОЛЛ/ТГ",
-    "EUR/KZT": "ЕВРО/ТГ",
-    "RUB/KZT": "РУБ/ТГ"
+    "Watch video": "Смотреть видео",
+    "Humidity": "Влажность",
+    "Thunderstorm": "Гроза",
+    "Drizzle": "Морось",
+    "Rain": "Дождь",
+    "Snow": "Снег",
+    "Clouds": "Облачно",
+    "Clear": "Ясно",
+    "Mist": "Туман",
+    "Smoke": "Дымка",
+    "Haze": "Дымка",
+    "Fog": "Густой туман",
+    "Gallery": "Фотогалерея",
+    "Exchange rates": "Курс валюты",
+    "USD/KZT": "доллар",
+    "EUR/KZT": "евро",
+    "RUB/KZT": "рубль",
+    "LogIn": "Вход",
+    "SignIn": "Регистрация",
+    "Country on map": "Страна на карте"
 }

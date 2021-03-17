@@ -15,52 +15,54 @@ const currency = getExchangeRates()
 const useStyles = makeStyles((theme) => ({
     root: {
         maxWidth: 200,
-        padding: theme.spacing(2)
+        padding: theme.spacing(4)
     },
     avatar: {
         marginRight: theme.spacing(5)
     }
 
 }))
-function CurrencyWidget({ t }) {
+function CurrencyWidget({ code, t }) {
     const classes = useStyles()
-    let code = "KZT"
     let [rates, updateRates] = useState({})
     useEffect(() => {
-        currency.getCurrentRate(code)
-            .then(response => updateRates({ ...response.data.conversion_rates }))
+        //    if (code) currency.getCurrentRate(code)
+        //         .then(response => updateRates({ ...response.data.conversion_rates }))
+        let res = { USD: 0.0054, EUR: 0.0078, RUB: 0.8 }
+        updateRates({...res})
+
         // eslint-disable-next-line
-    }, [])
+    }, [code])
     return (
-            <List className={classes.root}
-                subheader={
-                    <ListSubheader component="div" id="subheader">
-                        {t("Exchange rates")}
-                    </ListSubheader>
-                }>
-                <ListItem>
-                    <Avatar src="flags/US.png" variant="square" className={classes.avatar} />
-                    <ListItemText
-                        primary={(1 / rates.USD).toFixed(2)}
-                        secondary={t("USD/KZT")} />
-                </ListItem>
-                <Divider variant="inset" component="li" />
-                <ListItem>
-                    <Avatar src="flags/EU.png" variant="square" className={classes.avatar} />
-                    <ListItemText
-                        className={classes.list}
-                        primary={(1 / rates.EUR).toFixed(2)}
-                        secondary={t("EUR/KZT")} />
-                </ListItem>
-                <Divider variant="inset" component="li" />
-                <ListItem>
-                    <Avatar src="flags/RU.png" variant="square" className={classes.avatar} />
-                    <ListItemText
-                        primary={(1 / rates.RUB).toFixed(2)}
-                        secondary={t("RUB/KZT")} />
-                </ListItem>
-                <Divider variant="inset" component="li" />
-            </List>
+        <List className={classes.root}
+            subheader={
+                <ListSubheader component="div" id="subheader">
+                    {t("Exchange rates")}
+                </ListSubheader>
+            }>
+            <ListItem>
+                <Avatar src="/flags/US.png" variant="square" className={classes.avatar} />
+                <ListItemText
+                    primary={(1 / rates.USD).toFixed(2)}
+                    secondary={t("USD/KZT")} />
+            </ListItem>
+            <Divider variant="inset" component="li" />
+            <ListItem>
+                <Avatar src="/flags/EU.png" variant="square" className={classes.avatar} />
+                <ListItemText
+                    className={classes.list}
+                    primary={(1 / rates.EUR).toFixed(2)}
+                    secondary={t("EUR/KZT")} />
+            </ListItem>
+            <Divider variant="inset" component="li" />
+            <ListItem>
+                <Avatar src="/flags/RU.png" variant="square" className={classes.avatar} />
+                <ListItemText
+                    primary={(1 / rates.RUB).toFixed(2)}
+                    secondary={t("RUB/KZT")} />
+            </ListItem>
+            <Divider variant="inset" component="li" />
+        </List>
     )
 }
 export default withNamespaces()(CurrencyWidget)

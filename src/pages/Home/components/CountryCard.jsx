@@ -54,43 +54,31 @@ function CountryCard({ t }) {
         <Container className={classes.cardGrid} maxWidth="md">
             <h1>{t("Welcome")}</h1>
             <Grid container spacing={4}>
-                {countries
-                    .filter(
-                        (country) =>
-                            country.name
-                                .toLowerCase()
-                                .includes(search.toLowerCase()) ||
-                            country.capital
-                                .toLowerCase()
-                                .includes(search.toLowerCase())
-                    )
-                    .map((card, index) => {
-                        return (
-                            <Grid
-                                item
-                                key={index}
-                                xs={12}
-                                sm={6}
-                                md={4}
-                                className={classes.hover}
+                {countries.map((card, index) => {
+                    return (
+                        <Grid
+                            item
+                            key={index}
+                            xs={12}
+                            sm={6}
+                            md={4}
+                            className={classes.hover}
+                        >
+                            <Card
+                                className={classes.card}
+                                onClick={() => handleClick(card.nameEN, card.capitalEN)}
                             >
-                                <Card
-                                    className={classes.card}
-                                    onClick={() => handleClick(card.id)}
-                                >
-                                    <CardMedia
-                                        className={classes.cardMedia}
-                                        image={card.imageUrl}
-                                        title="Image Title"
-                                    />
-                                    <CardContent
-                                        className={classes.cardContent}
-                                    >
-                                        <h5>{card.name}</h5>
-                                        <p>{card.capital}</p>
-                                    </CardContent>
-                                </Card>
-                            </Grid>
+                                <CardMedia
+                                    className={classes.cardMedia}
+                                    image={card.previewImageUrl}
+                                />
+                                <CardContent className={classes.cardContent}>
+                                    <h5>{card.name}</h5>
+                                    <p>{card.capital}</p>
+                                </CardContent>
+                            </Card>
+                        </Grid>
+
                         )
                     })}
             </Grid>

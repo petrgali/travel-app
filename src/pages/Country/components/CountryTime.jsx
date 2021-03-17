@@ -1,23 +1,25 @@
 import { useState, useEffect } from "react"
-import { useSelector, useDispatch } from "react-redux"
-import i18next from "i18next"
-import { updateLocale } from "../../../redux/actions/localeAction"
+import { useSelector } from "react-redux"
+
 import {
     makeStyles,
     Card,
     CardContent
 } from "@material-ui/core"
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
     root: {
         backgroundColor: "#ffd53d",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        width: 350,
+        width: 283,
+        margin: "0 3rem",
+        background:
+            "linear-gradient(90deg, rgba(250,217,97,1) 0%, rgba(247,107,28,1) 100%)",
     },
     content: {
-        transform: "scale(1.2)"
+        transform: "scale(1)"
     }
 }))
 
@@ -27,38 +29,37 @@ const CapitalizeFirstLetter = (string) => string
     .join(" ")
 
 
-export default function CountryTime() {
+export default function CountryTime({ TZcode }) {
     const classes = useStyles()
-    const dispatch = useDispatch()
     const lang = useSelector(state => state.locale)
     let [date, updateDate] = useState(new Date())
-    let code = "Asia/Tokyo"
 
-    useEffect(() => {
-        dispatch(updateLocale(i18next.language))
-    }, [dispatch])
     useEffect(() => {
         let interval = setTimeout(() => {
             updateDate(new Date())
             return () => clearTimeout(interval)
         }, 1000)
     }, [date])
+    let requestLanguage = ""
+    lang.locale === "kz"
+        ? requestLanguage = "kaz"
+        : requestLanguage = lang.locale
     return (
         <>
             {!!lang.locale && <Card className={classes.root}>
                 <CardContent className={classes.content}>
-                    {date.toLocaleString(lang.locale, {
+                    {date.toLocaleString(requestLanguage, {
                         hour: "2-digit",
                         minute: "2-digit",
                         second: "2-digit",
-                        timeZone: code
-                    })} - {CapitalizeFirstLetter(date.toLocaleString(lang.locale, {
+                        timeZone: TZcode
+                    })} - {CapitalizeFirstLetter(date.toLocaleString(requestLanguage, {
                         weekday: "long",
-                        timeZone: code
-                    }))}, {CapitalizeFirstLetter(date.toLocaleString(lang.locale, {
+                        timeZone: TZcode
+                    }))}, {CapitalizeFirstLetter(date.toLocaleString(requestLanguage, {
                         month: "long",
                         day: "2-digit",
-                        timeZone: code
+                        timeZone: TZcode
                     }))}
                 </CardContent>
             </Card>}

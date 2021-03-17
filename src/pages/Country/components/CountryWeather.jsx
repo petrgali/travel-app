@@ -8,6 +8,7 @@ import {
     Typography,
     CircularProgress,
 } from "@material-ui/core"
+import { withNamespaces } from "react-i18next"
 
 const weather = getWeather()
 const useStyles = makeStyles((theme) => ({
@@ -46,21 +47,21 @@ const useStyles = makeStyles((theme) => ({
         paddingBottom: theme.spacing(1),
     },
 }))
-export default function CountryWeather() {
+function CountryWeather({ city, lang, t }) {
     const classes = useStyles()
     let [weatherData, updateWeather] = useState({})
     let [weatherIcon, updateIcon] = useState("")
     let requestConfig = {
-        city: "Nur-Sultan",
-        lang: "ru",
+        city: city,
+        lang: lang,
     }
     useEffect(() => {
-        weather.current(requestConfig).then((response) => {
+        if (city) weather.current(requestConfig).then((response) => {
             updateWeather({ ...response })
             updateIcon(weather.getIcon(response.weather[0].icon))
         })
         // eslint-disable-next-line
-    }, [])
+    }, [lang, city])
     if (weatherIcon)
         return (
             <Card className={classes.root}>
@@ -70,8 +71,8 @@ export default function CountryWeather() {
                             {+weatherData.main.temp.toFixed()}&deg;
                         </Typography>
                         <div className={classes.stat}>
-                            <p>Влажность {weatherData.main.humidity}%</p>
-                            <p>Ветер {weatherData.wind.speed} м/сек</p>
+                            <p>{t("Humidity")} {weatherData.main.humidity}%</p>
+                            {/* <p>Ветер {weatherData.wind.speed} м/сек</p> */}
                         </div>
                     </CardContent>
                 </div>
@@ -81,9 +82,11 @@ export default function CountryWeather() {
                         image={weatherIcon}
                         title="weather icon"
                     />
-                    <p> {weatherData.weather[0].description}</p>
+                    <p> {t(weatherData.weather[0].main)}</p>
                 </div>
             </Card>
         )
     return <CircularProgress />
 }
+export default withNamespaces()(CountryWeather)
+
