@@ -22,5 +22,10 @@
     "Country on map": "Country on map",
     "ImageLimit": "(up to 1 MB)",
     "ImageAllowed": "Sorry, only JPG, JPEG, PNG are allower",
-    "ImageTooLarge": "Image is too large. Limit is 1 MB"
+    "ImageTooLarge": "Image is too large. Limit is 1 MB",
+    "Вы вошли под именем": "You are logged in with a name ",
+    "Выйти": "Exit",
+    "Войти": "Login",
+    "Имя": "Name",
+    "Пароль": "Password"
 }

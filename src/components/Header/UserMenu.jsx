@@ -8,6 +8,7 @@ import {
 } from "@material-ui/core"
 import React, { useState } from "react"
 import { deleteCookie } from "../../utils/cookies"
+import { withNamespaces } from "react-i18next"
 
 const useStyles = makeStyles((theme) => ({
     menuItem: {
@@ -15,11 +16,11 @@ const useStyles = makeStyles((theme) => ({
         whiteSpace: "pre-wrap",
     },
     avatar: {
-      padding: 0,
-    }
+        padding: 0,
+    },
 }))
 
-const UserMenu = ({ user }) => {
+const UserMenu = ({ user, t }) => {
     const classes = useStyles()
     const [anchorEl, setAnchorEl] = useState(null)
 
@@ -57,15 +58,15 @@ const UserMenu = ({ user }) => {
             >
                 <MenuItem className={classes.menuItem} disabled>
                     <Typography>
-                        Вы вошли под именем @{user.username}
+                        {t("Вы вошли под именем")} @{user.username}
                     </Typography>
                 </MenuItem>
                 <MenuItem className={classes.menuItem} onClick={handleLogout}>
-                    Выйти
+                    {t("Выйти")}
                 </MenuItem>
             </Menu>
         </>
     )
 }
 
-export default UserMenu
+export default withNamespaces()(UserMenu)

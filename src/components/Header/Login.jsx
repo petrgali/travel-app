@@ -13,6 +13,7 @@ import MuiAlert from "@material-ui/lab/Alert"
 import { Close } from "@material-ui/icons"
 import React, { useState } from "react"
 import { login } from "../../services/auth"
+import { withNamespaces } from "react-i18next"
 
 const useStyles = makeStyles((theme) => ({
     dialogTitle: {
@@ -36,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const Login = (props) => {
-    const { isOpen, handleClose } = props
+    const { isOpen, handleClose, t } = props
     const classes = useStyles()
     const [form, setForm] = useState({
         username: "",
@@ -68,7 +69,9 @@ const Login = (props) => {
     return (
         <Dialog fullWidth maxWidth="xs" open={isOpen} onClose={handleClose}>
             <DialogTitle>
-                <Typography className={classes.dialogTitle}>Войти</Typography>
+                <Typography className={classes.dialogTitle}>
+                    {t("Войти")}
+                </Typography>
                 {true ? (
                     <IconButton
                         aria-label="close"
@@ -93,7 +96,7 @@ const Login = (props) => {
                     )}
                     <TextField
                         size="small"
-                        label="Имя"
+                        label={t("Имя")}
                         variant="outlined"
                         onChange={(event) =>
                             setForm({ ...form, username: event.target.value })
@@ -102,7 +105,7 @@ const Login = (props) => {
                     <TextField
                         type="password"
                         size="small"
-                        label="Пароль"
+                        label={t("Пароль")}
                         variant="outlined"
                         onChange={(event) =>
                             setForm({ ...form, password: event.target.value })
@@ -126,4 +129,4 @@ const Login = (props) => {
     )
 }
 
-export default Login
+export default withNamespaces()(Login)
