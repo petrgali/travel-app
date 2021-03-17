@@ -98,19 +98,20 @@ a {
     height: auto !important;
 }
 
-.country {
-    padding: 1rem 3rem 3rem;
-}
 .row-c {
     display: flex;
     flex-direction: row;
-    margin: 0 3rem;
+    margin: 1rem 0;
 }
 
 .col-c {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    margin-right: 3rem;
+}
+.main-c {
+    margin: 3rem;
 }
 
 @media (max-width: 780px) {
@@ -126,6 +127,11 @@ a {
         margin: 1rem 1rem;
     }
     .col-c {
+        margin-right: 0;
+
         margin-bottom: 1rem;
+    }
+    .main-c {
+        margin: 1rem;
     }
 }

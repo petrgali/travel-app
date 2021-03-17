@@ -1,13 +1,7 @@
 import { useEffect, useState } from "react"
 import getWeather from "../../../services/getWeather"
 import { makeStyles } from "@material-ui/core"
-import {
-    Card,
-    CardContent,
-    CardMedia,
-    Typography,
-    CircularProgress,
-} from "@material-ui/core"
+import { Card, CardContent, CardMedia, Typography } from "@material-ui/core"
 import { withNamespaces } from "react-i18next"
 
 const weather = getWeather()
@@ -16,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
         display: "flex",
         height: "10rem",
         background:
-            "linear-gradient(90deg, rgba(250,217,97,1) 0%, rgba(247,107,28,1) 100%)",
+            "linear-gradient(90deg, rgba(252,223,138,1) 0%, rgba(243,131,129,1) 100%);",
     },
     details: {
         display: "flex",

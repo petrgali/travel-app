@@ -48,23 +48,25 @@ export function Country(props) {
         // eslint-disable-next-line
     }, [lang, pathname])
     return (
-        <div className={classes.country}>
-            <div className="row-c">
-                <div className="col-c">
-                    <CountryWeather
-                        city={country.countryDetail.capitalEN}
-                        lang={lang}
-                    />
-                    <CountryTime TZcode={country.countryDetail.timezone} />
+        <div className="main-c">
+            <div className={classes.country}>
+                <div className="row-c">
+                    <div className="col-c">
+                        <CountryWeather
+                            city={country.countryDetail.capitalEN}
+                            lang={lang}
+                        />
+                        <CountryTime TZcode={country.countryDetail.timezone} />
+                    </div>
+
+                    <CurrencyWidget code={country.countryDetail.currencyCode} />
                 </div>
+                <CountryDetail />
 
-                <CurrencyWidget code={country.countryDetail.currencyCode} />
+                <CountryVideo />
+                <CountryGallery />
+                <Map geoURL={country.countryDetail.geoJsonUrl} />
             </div>
-            <CountryDetail />
-
-            <CountryVideo />
-            <CountryGallery />
-            <Map geoURL={country.countryDetail.geoJsonUrl} />
         </div>
     )
 }

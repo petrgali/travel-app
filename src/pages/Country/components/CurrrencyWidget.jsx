@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { withNamespaces } from "react-i18next"
-import getExchangeRates from "../../../services/getExchahgeRate"
+// import getExchangeRates from "../../../services/getExchahgeRate"
 import { makeStyles } from "@material-ui/core/styles"
 import {
     ListItem,
@@ -12,30 +12,24 @@ import {
     Card,
 } from "@material-ui/core"
 
-const currency = getExchangeRates()
+// const currency = getExchangeRates()
 const useStyles = makeStyles((theme) => ({
     root: {
-        // maxWidth: 200,
-        // padding: theme.spacing(4)
+        background:
+            "linear-gradient(90deg, rgba(252,223,138,1) 0%, rgba(243,131,129,1) 100%);",
         width: "100%",
         minWidth: "300px",
-        // marginRight: "3rem",
     },
 
     cardCurr: {
         width: "100%",
         marginRight: "3rem",
     },
-    avatar: {
-        // marginRight: theme.spacing(5)
-    },
 }))
 function CurrencyWidget({ code, t }) {
     const classes = useStyles()
     let [rates, updateRates] = useState({})
     useEffect(() => {
-        //    if (code) currency.getCurrentRate(code)
-        //         .then(response => updateRates({ ...response.data.conversion_rates }))
         let res = { USD: 0.0054, EUR: 0.0078, RUB: 0.8 }
         updateRates({ ...res })
 

@@ -3,19 +3,13 @@ import { useSelector } from "react-redux"
 import ImageGallery from "react-image-gallery"
 import "../../../../node_modules/react-image-gallery/styles/css/image-gallery.css"
 import Card from "@material-ui/core/Card"
-import { makeStyles } from "@material-ui/core/styles"
 import { withNamespaces } from "react-i18next"
-
-const useStyles = makeStyles({
-    main: {
-        padding: "0 3rem",
-    },
-})
 
 function CountryGallery({ t }) {
     const [modImages, setModImages] = useState([])
-    const images = useSelector((state) => state.countryDetail.countryDetail.imageUrlList)
-    const classes = useStyles()
+    const images = useSelector(
+        (state) => state.countryDetail.countryDetail.imageUrlList
+    )
     useEffect(() => {
         let modImages = []
         if (images) {
@@ -31,7 +25,7 @@ function CountryGallery({ t }) {
         }
     }, [images])
     return (
-        <div className={classes.main}>
+        <div>
             <h3>{t("Gallery")}</h3>
             <Card>
                 <ImageGallery

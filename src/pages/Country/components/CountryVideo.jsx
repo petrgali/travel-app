@@ -6,9 +6,6 @@ import { Card } from "@material-ui/core"
 import { withNamespaces } from "react-i18next"
 
 const useStyles = makeStyles({
-    main: {
-        margin: "0 3rem",
-    },
     cardVid: {
         display: "flex",
         justifyContent: "center",

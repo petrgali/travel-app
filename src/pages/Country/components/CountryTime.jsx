@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
         width: "100%",
         height: "fit-content",
         background:
-            "linear-gradient(90deg, rgba(250,217,97,1) 0%, rgba(247,107,28,1) 100%)",
+            "linear-gradient(90deg, rgba(252,223,138,1) 0%, rgba(243,131,129,1) 100%);",
     },
     content: {
         transform: "scale(1)",

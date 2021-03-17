@@ -19,9 +19,7 @@ const useStyles = makeStyles({
             flexDirection: "column",
         },
     },
-    main: {
-        padding: "3rem",
-    },
+
     details: {
         display: "flex",
         flexDirection: "column",
