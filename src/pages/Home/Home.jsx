@@ -1,30 +1,22 @@
-import { useEffect } from "react"
+import { makeStyles } from "@material-ui/core"
 import CountryCard from "./components/CountryCard"
-import { useSelector, useDispatch } from "react-redux"
-import { updateCountries } from "../../redux/actions/countryActions"
-import { useHistory } from "react-router-dom"
-import getCountries from "../../services/getCountries"
+
+const useStyles = makeStyles((theme) => ({
+    home: {
+        marginTop: 80,
+        overflow: "hidden",
+        [theme.breakpoints.down("xs")]: {
+            marginTop: 145,
+        },
+    },
+}))
 
 export default function Home() {
-    const history = useHistory()
-    const dispatch = useDispatch()
-    const countries = useSelector((state) => state.country.countries)
-
-    useEffect(() => {
-        const _getCountries = async () => {
-            const res = await getCountries()
-            if (res) dispatch(updateCountries(res))
-        }
-        _getCountries()
-    }, [dispatch])
-
-    const handleClick = (id) => {
-        history.push(`/country/${id}`)
-    }
+    const classes = useStyles()
 
     return (
-        <>
-            <CountryCard countries={countries} handleClick={handleClick} />
-        </>
+        <div className={classes.home}>
+            <CountryCard />
+        </div>
     )
 }

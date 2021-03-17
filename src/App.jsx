@@ -23,13 +23,11 @@ export const App = () => {
     }, [dispatch])
 
     return (
-        <div>
-            <ThemeProvider theme={theme}>
-                <BrowserRouter>
-                    <RouterConfig />
-                </BrowserRouter>
-            </ThemeProvider>
-        </div>
+      <ThemeProvider theme={theme}>
+          <BrowserRouter>
+              <RouterConfig />
+          </BrowserRouter>
+      </ThemeProvider>
     )
 }
 export default App

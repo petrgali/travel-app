@@ -8,9 +8,18 @@ import CountryDetail from "./components/CountryDetail"
 import CountryVideo from "./components/CountryVideo"
 import CountryGallery from "./components/CountryGallery"
 import CountryWeather from "./components/CountryWeather"
+import { makeStyles } from "@material-ui/core"
+
+const useStyles = makeStyles((theme) => ({
+  country: {
+    marginTop: 80,
+    overflow: "hidden",
+  }
+}))
+
 export function Country(props) {
     const id = props.match.params.id
-
+    const classes = useStyles()
     const dispatch = useDispatch()
     useEffect(() => {
         const _getCountryDetail = async () => {
@@ -28,7 +37,7 @@ export function Country(props) {
     }, [dispatch, id])
 
     return (
-        <div className="country">
+        <div className={classes.country}>
             <CountryWeather />
             <CountryDetail />
             <CountryVideo />
