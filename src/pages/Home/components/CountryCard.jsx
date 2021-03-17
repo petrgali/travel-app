@@ -47,14 +47,23 @@ function CountryCard({ t }) {
     }, [dispatch])
 
     const classes = useStyles()
-    const handleClick = (id) => {
-        history.push(`/country/${id}`)
+    const handleClick = (nameEN, capitalEN) => {
+        history.push(`/country/${nameEN}/${capitalEN}`)
     }
     return (
         <Container className={classes.cardGrid} maxWidth="md">
             <h1>{t("Welcome")}</h1>
-            <Grid container spacing={4}>
-                {countries.map((card, index) => {
+            <Grid container spacing={4}> {countries
+                .filter(
+                    (country) =>
+                        country.name
+                            .toLowerCase()
+                            .includes(search.toLowerCase()) ||
+                        country.capital
+                            .toLowerCase()
+                            .includes(search.toLowerCase())
+                )
+                .map((card, index) => {
                     return (
                         <Grid
                             item
@@ -79,8 +88,8 @@ function CountryCard({ t }) {
                             </Card>
                         </Grid>
 
-                        )
-                    })}
+                    )
+                })}
             </Grid>
         </Container>
     )

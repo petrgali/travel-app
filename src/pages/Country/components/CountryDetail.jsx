@@ -54,12 +54,12 @@ export const CountryDetail = () => {
                                 <CardContent className={classes.content}>
                                     <h2>{country.name}</h2>
                                     <p>{country.description}</p>
+                                    <CountryRating nameEN={country.nameEN} capitalEN={country.capitalEN} />
                                 </CardContent>
                             </div>
                         </Card>
                     </div>
                 )}
-
         </div>
     )
 }
