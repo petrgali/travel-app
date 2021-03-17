@@ -7,8 +7,9 @@ import {
     CardMedia,
     CircularProgress,
 } from "@material-ui/core"
-
 import { useSelector } from "react-redux"
+import CountryRating from "./CountryRating"
+
 const useStyles = makeStyles({
     root: {
         display: "flex",
@@ -54,6 +55,8 @@ export const CountryDetail = () => {
                             <CardContent className={classes.content}>
                                 <h2>{country.name}</h2>
                                 <p>{country.description}</p>
+                                {/* ADD here country.nameEN and country.capitalEN */}
+                                <CountryRating nameEN="Kazakhstan" capitalEN="Nur-Sultan" />
                             </CardContent>
                         </div>
                     </Card>
