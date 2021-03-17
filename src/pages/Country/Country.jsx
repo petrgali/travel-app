@@ -12,12 +12,12 @@ import CurrencyWidget from "./components/CurrrencyWidget"
 import CountryTime from "./components/CountryTime"
 import Map from "./components/map/Map"
 import { makeStyles } from "@material-ui/core"
-
+import { useLocation } from "react-router-dom"
 const useStyles = makeStyles((theme) => ({
-  country: {
-    marginTop: 80,
-    overflow: "hidden",
-  }
+    country: {
+        marginTop: 80,
+        overflow: "hidden",
+    },
 }))
 
 export function Country(props) {
@@ -25,13 +25,14 @@ export function Country(props) {
     const dispatch = useDispatch()
     const lang = useSelector((state) => state.locale.locale)
     const country = useSelector((state) => state.countryDetail)
+    const { pathname } = useLocation()
     const { countryName, capitalName } = props.match.params
-
 
     useEffect(() => {
         dispatch(updateLocale(i18next.language))
     }, [dispatch])
     useEffect(() => {
+        window.scrollTo(0, 0)
         const _getCountryDetail = async () => {
             dispatch(updateCountryDetail({ isLoading: true }))
             const res = await getCountryDetail(countryName, capitalName, lang)
@@ -45,21 +46,27 @@ export function Country(props) {
         }
         if (lang) _getCountryDetail()
         // eslint-disable-next-line
-    }, [lang])
+    }, [lang, pathname])
     return (
-        <div className={classes.country}>
-            <CountryWeather />
-            <CountryDetail />
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <div style={{ display: "flex", flexDirection: "column", width: "20%" }}>
-                    <CountryWeather city={country.countryDetail.capitalEN} lang={lang} />
+        <div className="main-c">
+            <div className={classes.country}>
+                <div className="row-c">
+                    <div className="col-c">
+                        <CountryWeather
+                            city={country.countryDetail.capitalEN}
+                            lang={lang}
+                        />
+                        <CountryTime TZcode={country.countryDetail.timezone} />
+                    </div>
+
                     <CurrencyWidget code={country.countryDetail.currencyCode} />
-                    <CountryTime TZcode={country.countryDetail.timezone} />
                 </div>
+                <CountryDetail />
+
                 <CountryVideo />
+                <CountryGallery />
+                <Map geoURL={country.countryDetail.geoJsonUrl} />
             </div>
-            <CountryGallery />
-            <Map geoURL={country.countryDetail.geoJsonUrl} />
         </div>
     )
 }

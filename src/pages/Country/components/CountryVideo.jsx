@@ -6,8 +6,10 @@ import { Card } from "@material-ui/core"
 import { withNamespaces } from "react-i18next"
 
 const useStyles = makeStyles({
-    main: {
-        padding: "0 3rem",
+    cardVid: {
+        display: "flex",
+        justifyContent: "center",
+        width: "min-content",
     },
 })
 
@@ -24,10 +26,8 @@ function CountryVideo({ t }) {
         <>
             <div className={classes.main}>
                 <h3>{t("Watch video")}</h3>
-                <Card>
-                    <ReactPlayer 
-                    url={video} 
-                    controls={true}/>
+                <Card className={classes.cardVid}>
+                    <ReactPlayer url={video} controls={true} />
                 </Card>
             </div>
         </>
