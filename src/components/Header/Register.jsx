@@ -15,6 +15,7 @@ import { Close } from "@material-ui/icons"
 import registerValidator from "../../utils/validators"
 import UploadFiled from "./UploadField"
 import { register } from "../../services/auth"
+import { withNamespaces } from "react-i18next"
 
 const useStyles = makeStyles((theme) => ({
     form: {
@@ -38,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const Register = (props) => {
-    const { isOpen, handleClose } = props
+    const { isOpen, handleClose, t } = props
     const classes = useStyles()
     const [form, setForm] = useState({
         username: "",
@@ -84,7 +85,7 @@ const Register = (props) => {
         <Dialog fullWidth maxWidth="xs" open={isOpen} onClose={handleClose}>
             <DialogTitle>
                 <Typography className={classes.dialogTitle}>
-                    Регистрация
+                    {t("Регистрация")}
                 </Typography>
                 {isOpen ? (
                     <IconButton
@@ -120,7 +121,7 @@ const Register = (props) => {
                                 .message
                         }
                         size="small"
-                        label="Имя"
+                        label={t("Имя")}
                         variant="outlined"
                         onChange={(event) =>
                             setForm({ ...form, username: event.target.value })
@@ -139,7 +140,7 @@ const Register = (props) => {
                         }
                         type="password"
                         size="small"
-                        label="Пароль"
+                        label={t("Пароль")}
                         variant="outlined"
                         onChange={(event) =>
                             setForm({ ...form, password: event.target.value })
@@ -195,4 +196,4 @@ const Register = (props) => {
     )
 }
 
-export default Register
+export default withNamespaces()(Register)
