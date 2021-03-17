@@ -9,17 +9,6 @@ html, body {
   min-height: 100%;
 }
 
-main {
-  padding-top: 80px;
-  overflow: hidden;
-}
-
-@media (max-width: 600px) {
-  main {
-    padding-top: 145px;
-  }
-}
-
 html {
     /* overflow: scroll;
     -webkit-overflow-scrolling: touch; */

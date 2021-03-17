@@ -9,17 +9,15 @@ export const RouterConfig = () => {
     return (
       <>
         <Header />
-        <main>
-          <Switch>
-              {/*Public route example*/}
-              <Route exact path={ROOT} component={Home} />
-              <Route path={COUNTRY} component={Country} />
-              {/*generic 404 route*/}
-              <Route path="*">
-                  <NotFound />
-              </Route>
-          </Switch>
-        </main>
+        <Switch>
+            {/*Public route example*/}
+            <Route exact path={ROOT} component={Home} />
+            <Route path={COUNTRY} component={Country} />
+            {/*generic 404 route*/}
+            <Route path="*">
+                <NotFound />
+            </Route>
+        </Switch>
       </>
     )
 }
