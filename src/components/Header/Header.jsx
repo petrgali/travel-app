@@ -15,21 +15,21 @@ import LangMenu from "./LangMenu"
 import Login from "./Login"
 import SearchBar from "./SearchBar"
 import ExitToAppRoundedIcon from "@material-ui/icons/ExitToAppRounded"
-import Icon from "@material-ui/core/Icon"
+import { Icon, Button } from "@material-ui/core"
 import Logo from "../../assets/logo_white.svg"
 import { useLocation } from "react-router"
 import { PersonAdd } from "@material-ui/icons"
 
 const useStyles = makeStyles((theme) => ({
     root: {
-      padding: theme.spacing(2),
-      display: "inline-block",
+        padding: theme.spacing(2),
+        display: "inline-block",
     },
     btns: {
-      display: "flex",
-      justifyContent: "flex-end",
-      alignItems: "center",
-      columnGap: 16,
+        display: "flex",
+        justifyContent: "flex-end",
+        alignItems: "center",
+        columnGap: 16,
     },
     menuButton: {
         margin: 0,
@@ -37,14 +37,23 @@ const useStyles = makeStyles((theme) => ({
         color: "white",
     },
     logo: {
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    icon: {
+        width: 25,
+    },
+    iconBtn: {
+        minWidth: "none",
+        "&:hover": {
+            background: "none",
+        },
     },
 }))
 
 const Header = ({ t }) => {
-    const location = useLocation();
+    const location = useLocation()
     const [isRegisterOpen, setIsRegisterOpen] = useState(false)
     const [isLoginOpen, setIsLoginOpen] = useState(false)
 
@@ -61,64 +70,67 @@ const Header = ({ t }) => {
     const classes = useStyles()
     return (
         <AppBar position="fixed" className={classes.root}>
-
-          <Grid container spacing={2} justify="space-between">
-            <Grid className={classes.logo} item xs="auto" sm="auto">
-              <Icon>
-                  <img src={Logo} alt="logo" width={25} />
-              </Icon>
-            </Grid>
-            {!location.pathname.includes('country') && (
-              <Box clone order={{ xs: 3, sm: 2 }}>
-                <Grid item alignContent="center" xs={12} sm>
-                  <SearchBar />
+            <Grid container spacing={2} justify="space-between">
+                <Grid className={classes.logo} item xs="auto" sm="auto">
+                    <Button href="/" variant="link" className={classes.iconBtn}>
+                        <Icon className={classes.icon}>
+                            <img src={Logo} alt="logo" width={25} />
+                        </Icon>
+                    </Button>
                 </Grid>
-              </Box>
-            )}
-            
-            <Box clone order={{ xs: 2, sm: 3 }}>
-              <Grid className={classes.btns} item xs sm="auto">
-                {userState.isLoading && (
-                    <CircularProgress
-                        className={classes.loading}
-                        size={24}
-                        color="white"
-                    />
+                {!location.pathname.includes("country") && (
+                    <Box clone order={{ xs: 3, sm: 2 }}>
+                        <Grid item alignContent="center" xs={12} sm>
+                            <SearchBar />
+                        </Grid>
+                    </Box>
                 )}
-                {!userState.isLoading && (
-                    <>
-                        {!userState.username && (
+
+                <Box clone order={{ xs: 2, sm: 3 }}>
+                    <Grid className={classes.btns} item xs sm="auto">
+                        {userState.isLoading && (
+                            <CircularProgress
+                                className={classes.loading}
+                                size={24}
+                                color="white"
+                            />
+                        )}
+                        {!userState.isLoading && (
                             <>
-                                <IconButton
-                                    className={classes.menuButton}
-                                    onClick={handleLoginOpen}
-                                >
-                                    <ExitToAppRoundedIcon />
-                                </IconButton>
-                                <Login
-                                    isOpen={isLoginOpen}
-                                    handleClose={handleLoginClose}
-                                />
-                                <IconButton
-                                    className={classes.menuButton}
-                                    onClick={handleRegisterOpen}
-                                >
-                                    <PersonAdd />
-                                </IconButton>
-                                <Register
-                                    isOpen={isRegisterOpen}
-                                    handleClose={handleRegisterClose}
-                                />
+                                {!userState.username && (
+                                    <>
+                                        <IconButton
+                                            className={classes.menuButton}
+                                            onClick={handleLoginOpen}
+                                        >
+                                            <ExitToAppRoundedIcon />
+                                        </IconButton>
+                                        <Login
+                                            isOpen={isLoginOpen}
+                                            handleClose={handleLoginClose}
+                                        />
+                                        <IconButton
+                                            className={classes.menuButton}
+                                            onClick={handleRegisterOpen}
+                                        >
+                                            <PersonAdd />
+                                        </IconButton>
+                                        <Register
+                                            isOpen={isRegisterOpen}
+                                            handleClose={handleRegisterClose}
+                                        />
+                                    </>
+                                )}
+
+                                {userState.username && (
+                                    <UserMenu user={userState} />
+                                )}
                             </>
                         )}
-
-                        {userState.username && <UserMenu user={userState} />}
-                    </>
-                )}
-                <LangMenu />
-              </Grid>
-            </Box>
-          </Grid>
+                        <LangMenu />
+                    </Grid>
+                </Box>
+            </Grid>
         </AppBar>
     )
 }
