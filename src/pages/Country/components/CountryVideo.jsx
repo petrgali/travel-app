@@ -4,6 +4,7 @@ import { useSelector } from "react-redux"
 import "../../../../node_modules/video-react/dist/video-react.css"
 import { Player, LoadingSpinner } from "video-react"
 import { Card } from "@material-ui/core"
+import { withNamespaces } from "react-i18next"
 
 const useStyles = makeStyles({
     main: {
@@ -11,7 +12,7 @@ const useStyles = makeStyles({
     },
 })
 
-export default function CountryVideo() {
+function CountryVideo({ t }) {
     const classes = useStyles()
     const [video, setVideo] = useState("")
     const [img, setImg] = useState("")
@@ -25,8 +26,7 @@ export default function CountryVideo() {
     return (
         <>
             <div className={classes.main}>
-                <h3>Watch video</h3>
-
+                <h3>{t("Watch video")}</h3>
                 <Card>
                     <Player src={video} poster={img}>
                         <LoadingSpinner />
@@ -36,3 +36,5 @@ export default function CountryVideo() {
         </>
     )
 }
+
+export default withNamespaces()(CountryVideo)

@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
+import { useSelector } from "react-redux"
 import ImageGallery from "react-image-gallery"
 import "../../../../node_modules/react-image-gallery/styles/css/image-gallery.css"
 import Card from "@material-ui/core/Card"
 import { makeStyles } from "@material-ui/core/styles"
-import { useSelector } from "react-redux"
+import { withNamespaces } from "react-i18next"
 
 const useStyles = makeStyles({
     main: {
@@ -11,7 +12,7 @@ const useStyles = makeStyles({
     },
 })
 
-export default function CountryGallery() {
+function CountryGallery({ t }) {
     const [modImages, setModImages] = useState([])
     const images = useSelector(
         (state) => state.countryDetail.countryDetail.places
@@ -32,7 +33,7 @@ export default function CountryGallery() {
     }, [images])
     return (
         <div className={classes.main}>
-            <h3>Gallery</h3>
+            <h3>{t("Gallery")}</h3>
             <Card>
                 <ImageGallery
                     items={modImages}
@@ -43,3 +44,4 @@ export default function CountryGallery() {
         </div>
     )
 }
+export default withNamespaces()(CountryGallery)

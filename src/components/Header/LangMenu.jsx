@@ -1,5 +1,12 @@
 import React, { useState } from "react"
-import { makeStyles, Button, Menu, MenuItem } from "@material-ui/core"
+import { useDispatch } from "react-redux"
+import { updateLocale } from "../../redux/actions/localeAction"
+import {
+    makeStyles,
+    Button,
+    Menu,
+    MenuItem
+} from "@material-ui/core"
 import { withNamespaces } from "react-i18next"
 import i18n from "../../i18n/i18n"
 
@@ -14,12 +21,14 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const LangMenu = () => {
+    const dispatch = useDispatch()
     const classes = useStyles()
     const [anchorEl, setAnchorEl] = useState(null)
     const languages = ["kz", "ru", "en"]
 
     const changeLanguage = (lng) => {
         i18n.changeLanguage(lng)
+        dispatch(updateLocale(lng))
     }
 
     const handleClick = (event) => {

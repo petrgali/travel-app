@@ -37,28 +37,27 @@ const useStyles = makeStyles({
 export const CountryDetail = () => {
     const classes = useStyles()
     const country = useSelector((state) => state.countryDetail.countryDetail)
-
     return (
         <div>
             {country.isLoading ? (
                 <CircularProgress />
             ) : (
-                <div className={classes.main}>
-                    <Card className={classes.root}>
-                        <CardMedia
-                            className={classes.cover}
-                            image={country.imageUrl}
-                            title={country.name}
-                        />
-                        <div className={classes.details}>
-                            <CardContent className={classes.content}>
-                                <h2>{country.name}</h2>
-                                <p>{country.description}</p>
-                            </CardContent>
-                        </div>
-                    </Card>
-                </div>
-            )}
+                    <div className={classes.main}>
+                        <Card className={classes.root}>
+                            <CardMedia
+                                className={classes.cover}
+                                image={country.previewImageUrl}
+                                title={country.name}
+                            />
+                            <div className={classes.details}>
+                                <CardContent className={classes.content}>
+                                    <h2>{country.name}</h2>
+                                    <p>{country.description}</p>
+                                </CardContent>
+                            </div>
+                        </Card>
+                    </div>
+                )}
         </div>
     )
 }

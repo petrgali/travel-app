@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react"
-import { useSelector, useDispatch } from "react-redux"
-import i18next from "i18next"
-import { updateLocale } from "../../../redux/actions/localeAction"
+import { useSelector } from "react-redux"
+
 import {
     makeStyles,
     Card,
@@ -29,14 +28,11 @@ const CapitalizeFirstLetter = (string) => string
 
 export default function CountryTime() {
     const classes = useStyles()
-    const dispatch = useDispatch()
     const lang = useSelector(state => state.locale)
     let [date, updateDate] = useState(new Date())
     let code = "Asia/Tokyo"
 
-    useEffect(() => {
-        dispatch(updateLocale(i18next.language))
-    }, [dispatch])
+
     useEffect(() => {
         let interval = setTimeout(() => {
             updateDate(new Date())

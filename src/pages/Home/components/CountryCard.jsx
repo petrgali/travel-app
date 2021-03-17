@@ -50,12 +50,11 @@ function CountryCard({ t, countries, handleClick }) {
                         >
                             <Card
                                 className={classes.card}
-                                onClick={() => handleClick(card.id)}
+                                onClick={() => handleClick(card.ISOCode)}
                             >
                                 <CardMedia
                                     className={classes.cardMedia}
-                                    image={card.imageUrl}
-                                    title="Image Title"
+                                    image={card.previewImageUrl}
                                 />
                                 <CardContent className={classes.cardContent}>
                                     <h5>{card.name}</h5>
