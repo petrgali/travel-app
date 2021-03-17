@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState, useEffect } from "react"
 import {
     Container,
     IconButton,
@@ -9,49 +9,60 @@ import {
 import SearchIcon from "@material-ui/icons/Search"
 import CloseIcon from "@material-ui/icons/Close"
 import Zoom from "@material-ui/core/Zoom"
+import { useDispatch } from "react-redux"
+import { updateSearch } from "../../redux/actions/searchActions"
 
 const useStyles = makeStyles((theme) => ({
     root: {
         display: "flex",
         alignItems: "center",
     },
-    input: {
-        margin: "0.5rem 2rem",
-        flex: 1,
+    container: {
+      padding: 0,
     },
-    iconButton: {
-        margin: "0.5rem 2rem 0.5rem 0",
+    input: {
+        margin: "0.5rem",
+        flex: 1,
     },
 }))
 
-export default function SearchBar(props) {
+export default function SearchBar() {
     const classes = useStyles()
-    let [searchMsg, updateMsg] = useState("")
+    const [searchMsg, updateMsg] = useState("")
+    const dispatch = useDispatch()
 
-   useEffect(() => {
-       if (!searchMsg) props.handleSearch(searchMsg)
+    const _handleSearch = (request) => {
+        dispatch(updateSearch(request))
+    }
+
+    useEffect(() => {
+        if (!searchMsg) dispatch(updateSearch(searchMsg))
         // eslint-disable-next-line
     }, [searchMsg])
 
     return (
-        <Container maxWidth="md"
+        <Container
+            className={classes.container}
+            maxWidth="md"
             onSubmit={(event) => {
                 event.preventDefault()
-                props.handleSearch(searchMsg)
-            }}>
-            <Paper component="form" elevation={3} className={classes.root} >
-
+                _handleSearch(searchMsg)
+            }}
+        >
+            <Paper component="form" elevation={3} className={classes.root}>
                 <InputBase
                     value={searchMsg}
-                    onChange={(event) => updateMsg(String(event.target.value))}
+                    onChange={(event) => {
+                        updateMsg(String(event.target.value))
+                    }}
                     autoFocus
                     className={classes.input}
                     placeholder="search..."
                 />
                 <Zoom in={!!searchMsg}>
                     <IconButton
+                        className="close"
                         aria-label="close"
-                        className={classes.iconButton}
                         onClick={() => updateMsg("")}
                     >
                         <CloseIcon />

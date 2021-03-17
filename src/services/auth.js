@@ -28,15 +28,19 @@ const login = async (data) => {
 }
 
 const me = async () => {
-  const response = await api.get(
-    "auth/me",
-    {
-      headers: {
-        Authorization: `Bearer ${getCookie("refreshToken")}`,
-      },
-    }
-  )
-  return response.data
+  try {
+    const response = await api.get(
+      "auth/me",
+      {
+        headers: {
+          Authorization: `Bearer ${getCookie("refreshToken")}`,
+        },
+      }
+    )
+    return response.data
+  } catch (error) {
+    return error.response.data
+  }
 }
 
 export {

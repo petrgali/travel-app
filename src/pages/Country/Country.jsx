@@ -11,7 +11,17 @@ import CountryWeather from "./components/CountryWeather"
 import CurrencyWidget from "./components/CurrrencyWidget"
 import CountryTime from "./components/CountryTime"
 import Map from "./components/map/Map"
+import { makeStyles } from "@material-ui/core"
+
+const useStyles = makeStyles((theme) => ({
+  country: {
+    marginTop: 80,
+    overflow: "hidden",
+  }
+}))
+
 export function Country(props) {
+    const classes = useStyles()
     const dispatch = useDispatch()
     const lang = useSelector((state) => state.locale.locale)
     const country = useSelector((state) => state.countryDetail)
@@ -37,7 +47,8 @@ export function Country(props) {
         // eslint-disable-next-line
     }, [lang])
     return (
-        <div className="country">
+        <div className={classes.country}>
+            <CountryWeather />
             <CountryDetail />
             <div style={{ display: "flex", justifyContent: "space-between" }}>
                 <div style={{ display: "flex", flexDirection: "column", width: "20%" }}>

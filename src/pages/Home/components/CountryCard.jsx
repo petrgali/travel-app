@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import {
     Container,
     Grid,
@@ -8,14 +8,16 @@ import {
 } from "@material-ui/core"
 import { makeStyles } from "@material-ui/core/styles"
 import { withNamespaces } from "react-i18next"
-
+import { useSelector, useDispatch } from "react-redux"
+import { updateCountries } from "../../../redux/actions/countryActions"
+import { useHistory } from "react-router-dom"
+import getCountries from "../../../services/getCountries"
 const useStyles = makeStyles((theme) => ({
     cardMedia: {
         height: 150,
     },
     cardContent: {
         maxHeight: "8rem",
-        overflow: "scroll",
         flexGrow: 1,
         backgroundColor: "white",
     },
@@ -31,9 +33,23 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-function CountryCard({ t, countries, handleClick }) {
-    const classes = useStyles()
+function CountryCard({ t }) {
+    const history = useHistory()
+    const dispatch = useDispatch()
+    const countries = useSelector((state) => state.country.countries)
+    const search = useSelector((state) => state.search.search)
+    useEffect(() => {
+        const _getCountries = async () => {
+            const res = await getCountries()
+            if (res) dispatch(updateCountries(res))
+        }
+        _getCountries()
+    }, [dispatch])
 
+    const classes = useStyles()
+    const handleClick = (id) => {
+        history.push(`/country/${id}`)
+    }
     return (
         <Container className={classes.cardGrid} maxWidth="md">
             <h1>{t("Welcome")}</h1>
@@ -62,8 +78,9 @@ function CountryCard({ t, countries, handleClick }) {
                                 </CardContent>
                             </Card>
                         </Grid>
-                    )
-                })}
+
+                        )
+                    })}
             </Grid>
         </Container>
     )

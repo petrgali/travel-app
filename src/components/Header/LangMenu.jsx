@@ -12,7 +12,6 @@ import i18n from "../../i18n/i18n"
 
 const useStyles = makeStyles((theme) => ({
     menuButton: {
-        marginRight: theme.spacing(2),
         background: "white",
         "&:hover": {
             background: "white",
