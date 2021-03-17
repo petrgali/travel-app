@@ -19,5 +19,8 @@
     "RUB/KZT": "russian ruble",
     "LogIn": "LogIn",
     "SignIn": "SignIn",
-    "Country on map": "Country on map"
+    "Country on map": "Country on map",
+    "ImageLimit": "(up to 1 MB)",
+    "ImageAllowed": "Sorry, only JPG, JPEG, PNG are allower",
+    "ImageTooLarge": "Image is too large. Limit is 1 MB"
 }

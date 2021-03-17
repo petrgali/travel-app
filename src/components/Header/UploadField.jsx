@@ -1,6 +1,8 @@
-import React from 'react';
-import { makeStyles, Box, Avatar, IconButton, Typography } from '@material-ui/core';
+import React, { useState } from 'react';
+import { makeStyles, Box, Avatar, IconButton, Typography, Snackbar } from '@material-ui/core';
+import Alert from '@material-ui/lab/Alert';
 import { Close, PublishRounded } from '@material-ui/icons';
+import { withNamespaces } from "react-i18next"
 
 const useStyles = makeStyles((theme) => ({
   avatar: {
@@ -17,7 +19,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const UploadFiled = (props) => {
-  const { image, setImage } = props;
+  const { image, setImage, t } = props;
+  const [error, setError] = useState(null);
   const classes = useStyles();
   
   const setBase64Image = async (file) => {
@@ -31,6 +34,8 @@ const UploadFiled = (props) => {
       }
     };
   }
+
+  const handleErrorClose = () => setError(null)
   
   return (
     <Box className={classes.avatar}>
@@ -52,7 +57,15 @@ const UploadFiled = (props) => {
           type="file"
           onChange={async (event) => {
             const file = event.target.files[0]
-            if (file.size > 1000000 || !["image/jpeg", "image/png"].includes(file.type)) return
+            if (!file) return;
+            if (!["image/jpeg", "image/png"].includes(file.type)) {
+              setError(t("ImageAllowed"))
+              return
+            }
+            if (file.size > 1000000) {
+              setError(t("ImageTooLarge"))
+              return
+            }
             await setBase64Image(file)
           }}
           hidden
@@ -63,12 +76,17 @@ const UploadFiled = (props) => {
           </IconButton>
         </label>
         <Typography>
-          (до 1 мб)
+          {t("ImageLimit")}
         </Typography>
       </div>
+      <Snackbar open={error} autoHideDuration={6000} onClose={handleErrorClose}>
+        <Alert onClose={handleErrorClose} severity="error">
+          {error}
+        </Alert>
+      </Snackbar>
     </Box>
   )
 }
 
-export default UploadFiled
+export default withNamespaces()(UploadFiled)
 
