@@ -3,8 +3,9 @@ import {
     makeStyles,
     CircularProgress,
     AppBar,
-    Button,
     IconButton,
+    Grid,
+    Box,
 } from "@material-ui/core"
 import { withNamespaces } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -16,29 +17,34 @@ import SearchBar from "./SearchBar"
 import ExitToAppRoundedIcon from "@material-ui/icons/ExitToAppRounded"
 import Icon from "@material-ui/core/Icon"
 import Logo from "../../assets/logo_white.svg"
+import { useLocation } from "react-router"
+import { PersonAdd } from "@material-ui/icons"
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        height: "fit-content",
-        flexDirection: "row",
-        justifyContent: "flex-end",
-        alignItems: "center",
+      padding: theme.spacing(2),
+      display: "inline-block",
+    },
+    btns: {
+      display: "flex",
+      justifyContent: "flex-end",
+      alignItems: "center",
+      columnGap: 16,
     },
     menuButton: {
-        margin: theme.spacing(2),
+        margin: 0,
         textTransform: "none",
         color: "white",
     },
     logo: {
-        width: "1.7rem",
-        paddingLeft: "1rem",
-    },
-    loading: {
-        marginRight: 16,
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
     },
 }))
 
 const Header = ({ t }) => {
+    const location = useLocation();
     const [isRegisterOpen, setIsRegisterOpen] = useState(false)
     const [isLoginOpen, setIsLoginOpen] = useState(false)
 
@@ -55,49 +61,64 @@ const Header = ({ t }) => {
     const classes = useStyles()
     return (
         <AppBar position="fixed" className={classes.root}>
-            {userState.isLoading && (
-                <CircularProgress
-                    className={classes.loading}
-                    size={24}
-                    color="white"
-                />
-            )}
-            <Icon className={classes.logo}>
-                <img src={Logo} alt="" width={25} />
-            </Icon>
-            <SearchBar />
+          <Grid container spacing={2} justify="space-between">
+            <Grid className={classes.logo} item xs="auto" sm="auto">
+              <Icon>
+                  <img src={Logo} alt="logo" width={25} />
+              </Icon>
+            </Grid>
 
-            {!userState.isLoading && (
-                <>
-                    {!userState.username && (
-                        <>
-                            <IconButton
-                                className={classes.menuButton}
-                                onClick={handleLoginOpen}
-                            >
-                                <ExitToAppRoundedIcon />
-                            </IconButton>
-                            <Login
-                                isOpen={isLoginOpen}
-                                handleClose={handleLoginClose}
-                            />
-                            <Button
-                                className={classes.menuButton}
-                                onClick={handleRegisterOpen}
-                            >
-                                Регистрация
-                            </Button>
-                            <Register
-                                isOpen={isRegisterOpen}
-                                handleClose={handleRegisterClose}
-                            />
-                        </>
-                    )}
-
-                    {userState.username && <UserMenu user={userState} />}
-                </>
+            {!location.pathname.includes('country') && (
+              <Box clone order={{ xs: 3, sm: 2 }}>
+                <Grid item alignContent="center" xs={12} sm>
+                  <SearchBar />
+                </Grid>
+              </Box>
             )}
-            <LangMenu />
+            
+            <Box clone order={{ xs: 2, sm: 3 }}>
+              <Grid className={classes.btns} item xs sm="auto">
+                {userState.isLoading && (
+                    <CircularProgress
+                        className={classes.loading}
+                        size={24}
+                        color="white"
+                    />
+                )}
+                {!userState.isLoading && (
+                    <>
+                        {!userState.username && (
+                            <>
+                                <IconButton
+                                    className={classes.menuButton}
+                                    onClick={handleLoginOpen}
+                                >
+                                    <ExitToAppRoundedIcon />
+                                </IconButton>
+                                <Login
+                                    isOpen={isLoginOpen}
+                                    handleClose={handleLoginClose}
+                                />
+                                <IconButton
+                                    className={classes.menuButton}
+                                    onClick={handleRegisterOpen}
+                                >
+                                    <PersonAdd />
+                                </IconButton>
+                                <Register
+                                    isOpen={isRegisterOpen}
+                                    handleClose={handleRegisterClose}
+                                />
+                            </>
+                        )}
+
+                        {userState.username && <UserMenu user={userState} />}
+                    </>
+                )}
+                <LangMenu />
+              </Grid>
+            </Box>
+          </Grid>
         </AppBar>
     )
 }

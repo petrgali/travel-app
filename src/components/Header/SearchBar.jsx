@@ -17,6 +17,9 @@ const useStyles = makeStyles((theme) => ({
         display: "flex",
         alignItems: "center",
     },
+    container: {
+      padding: 0,
+    },
     input: {
         margin: "0.5rem",
         flex: 1,
@@ -39,6 +42,7 @@ export default function SearchBar() {
 
     return (
         <Container
+            className={classes.container}
             maxWidth="md"
             onSubmit={(event) => {
                 event.preventDefault()

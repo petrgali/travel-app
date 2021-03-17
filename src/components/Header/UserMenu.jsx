@@ -14,6 +14,9 @@ const useStyles = makeStyles((theme) => ({
         width: 150,
         whiteSpace: "pre-wrap",
     },
+    avatar: {
+      padding: 0,
+    }
 }))
 
 const UserMenu = ({ user }) => {
@@ -36,12 +39,12 @@ const UserMenu = ({ user }) => {
     return (
         <>
             {user.avatar && (
-                <IconButton onClick={handleClick}>
+                <IconButton className={classes.avatar} onClick={handleClick}>
                     <Avatar src={`data:image/jpeg;base64,${user.avatar}`} />
                 </IconButton>
             )}
             {!user.avatar && (
-                <IconButton onClick={handleClick}>
+                <IconButton className={classes.avatar} onClick={handleClick}>
                     <Avatar src="/broken-image.jpg" />
                 </IconButton>
             )}
