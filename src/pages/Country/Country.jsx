@@ -49,25 +49,20 @@ export function Country(props) {
     }, [lang, pathname])
     return (
         <div className={classes.country}>
-            <CountryWeather />
-            <CountryDetail />
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <div
-                    style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        width: "20%",
-                    }}
-                >
+            <div className="row-c">
+                <div className="col-c">
                     <CountryWeather
                         city={country.countryDetail.capitalEN}
                         lang={lang}
                     />
-                    <CurrencyWidget code={country.countryDetail.currencyCode} />
                     <CountryTime TZcode={country.countryDetail.timezone} />
                 </div>
-                <CountryVideo />
+
+                <CurrencyWidget code={country.countryDetail.currencyCode} />
             </div>
+            <CountryDetail />
+
+            <CountryVideo />
             <CountryGallery />
             <Map geoURL={country.countryDetail.geoJsonUrl} />
         </div>

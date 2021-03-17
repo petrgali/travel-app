@@ -14,11 +14,9 @@ const weather = getWeather()
 const useStyles = makeStyles((theme) => ({
     root: {
         display: "flex",
-        width: "fit-content",
         height: "10rem",
         background:
             "linear-gradient(90deg, rgba(250,217,97,1) 0%, rgba(247,107,28,1) 100%)",
-        margin: "0 3rem",
     },
     details: {
         display: "flex",

@@ -31,6 +31,8 @@ const useStyles = makeStyles((theme) => ({
     names: {
         margin: 0,
         textDecoration: "underline",
+        display: "flex",
+        justifyContent: "center",
     },
 }))
 
