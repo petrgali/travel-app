@@ -56,7 +56,7 @@ function CountryWeather({ city, lang, t }) {
         lang: lang,
     }
     useEffect(() => {
-       if (city) weather.current(requestConfig).then((response) => {
+        if (city) weather.current(requestConfig).then((response) => {
             updateWeather({ ...response })
             updateIcon(weather.getIcon(response.weather[0].icon))
         })
@@ -82,7 +82,7 @@ function CountryWeather({ city, lang, t }) {
                         image={weatherIcon}
                         title="weather icon"
                     />
-                    <p> {weatherData.weather[0].description}</p>
+                    <p> {t(weatherData.weather[0].main)}</p>
                 </div>
             </Card>
         )
