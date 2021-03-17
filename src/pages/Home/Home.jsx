@@ -1,3 +1,4 @@
+
 import { makeStyles } from "@material-ui/core"
 import CountryCard from "./components/CountryCard"
 
@@ -15,6 +16,7 @@ export default function Home() {
     const classes = useStyles()
 
     return (
+
         <div className={classes.home}>
             <CountryCard />
         </div>
