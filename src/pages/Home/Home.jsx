@@ -25,8 +25,8 @@ export default function Home() {
         dispatch(updateLocale(i18next.language))
     }, [dispatch])
 
-    const handleClick = (code) => {
-        history.push(`/country/${code}`)
+    const handleClick = (country, capital) => {
+        history.push(`/country/${country}/${capital}`)
     }
 
     return (

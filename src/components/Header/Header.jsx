@@ -58,7 +58,7 @@ const Header = ({ t }) => {
                                 className={classes.menuButton}
                                 onClick={handleLoginOpen}
                             >
-                                Войти
+                                {t("LogIn")}
                             </Button>
                             <Login
                                 isOpen={isLoginOpen}
@@ -68,7 +68,7 @@ const Header = ({ t }) => {
                                 className={classes.menuButton}
                                 onClick={handleRegisterOpen}
                             >
-                                Регистрация
+                                {t("SignIn")}
                             </Button>
                             <Register
                                 isOpen={isRegisterOpen}

@@ -50,7 +50,7 @@ function CountryCard({ t, countries, handleClick }) {
                         >
                             <Card
                                 className={classes.card}
-                                onClick={() => handleClick(card.ISOCode)}
+                                onClick={() => handleClick(card.nameEN, card.capitalEN)}
                             >
                                 <CardMedia
                                     className={classes.cardMedia}

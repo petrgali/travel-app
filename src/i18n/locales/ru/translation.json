@@ -3,8 +3,10 @@
     "Watch video": "Смотреть видео",
     "Humidity": "Влажность",
     "Gallery": "Фотогалерея",
-    "Exchange rates": "Курсы валют",
-    "USD/KZT": "ДОЛЛ/ТГ",
-    "EUR/KZT": "ЕВРО/ТГ",
-    "RUB/KZT": "РУБ/ТГ"
+    "Exchange rates": "Курс валюты",
+    "USD/KZT": "доллар",
+    "EUR/KZT": "евро",
+    "RUB/KZT": "рубль",
+    "LogIn": "Вход",
+    "SignIn": "Регистрация"
 }

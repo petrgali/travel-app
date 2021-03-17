@@ -14,22 +14,21 @@ const useStyles = makeStyles({
 
 function CountryGallery({ t }) {
     const [modImages, setModImages] = useState([])
-    const images = useSelector(
-        (state) => state.countryDetail.countryDetail.places
-    )
-
+    const images = useSelector((state) => state.countryDetail.countryDetail.imageUrlList)
     const classes = useStyles()
-
     useEffect(() => {
         let modImages = []
-        for (var i in images) {
-            let img = {
-                original: images[i].photoUrl,
-                thumbnail: images[i].name,
+        if (images) {
+            for (let i in images) {
+                let img = {
+                    original: images[i].url,
+                    originalTitle: images[i].description,
+                    thumbnail: images[i].url,
+                }
+                modImages.push(img)
             }
-            modImages.push(img)
+            setModImages(modImages)
         }
-        setModImages(modImages)
     }, [images])
     return (
         <div className={classes.main}>

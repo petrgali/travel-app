@@ -5,7 +5,7 @@ export default function getExchangeRates() {
     return {
         async getCurrentRate(currency) {
             let url = `${EXCHANGE_API_URL}${currency}`
-            //    return await axios.get(url)
+               return await axios.get(url)
         }
     }
 }

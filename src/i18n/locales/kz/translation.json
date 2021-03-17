@@ -1,10 +1,12 @@
 {
     "Welcome": "Қош келдіңіз!",
     "Watch video": "Бейнені қараңыз",
-    "Humidity":"Ылғалдылық ",
+    "Humidity": "Ылғалдылық ",
     "Gallery": "Галереясы",
     "Exchange rates": "Валюта айырбастау",
-    "USD/KZT": "ДОЛЛ/ТГ",
-    "EUR/KZT": "ЕУР/ТГ",
-    "RUB/KZT": "РУБ/ТГ"
+    "USD/KZT": "доллар",
+    "EUR/KZT": "еуро",
+    "RUB/KZT": "ресей рубль",
+    "LogIn": "Кіру",
+    "SignIn": "Tіркелу"
 }

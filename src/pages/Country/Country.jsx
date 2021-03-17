@@ -8,12 +8,15 @@ import CountryDetail from "./components/CountryDetail"
 import CountryVideo from "./components/CountryVideo"
 import CountryGallery from "./components/CountryGallery"
 import CountryWeather from "./components/CountryWeather"
+import CurrencyWidget from "./components/CurrrencyWidget"
+import CountryTime from "./components/CountryTime"
 
 export function Country(props) {
     const dispatch = useDispatch()
     const lang = useSelector((state) => state.locale.locale)
     const country = useSelector((state) => state.countryDetail)
-    const id = props.match.params.id
+    const { countryName, capitalName } = props.match.params
+
 
     useEffect(() => {
         dispatch(updateLocale(i18next.language))
@@ -21,7 +24,7 @@ export function Country(props) {
     useEffect(() => {
         const _getCountryDetail = async () => {
             dispatch(updateCountryDetail({ isLoading: true }))
-            const res = await getCountryDetail(id, lang)
+            const res = await getCountryDetail(countryName, capitalName, lang)
             if (res)
                 dispatch(
                     updateCountryDetail({
@@ -35,10 +38,18 @@ export function Country(props) {
     }, [lang])
     return (
         <div className="country">
-            <CountryWeather city={country.countryDetail.capital} lang={lang} />
             <CountryDetail />
-            <CountryGallery />
-            <CountryVideo />
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <div style={{ display: "flex", flexDirection: "column", width: "20%" }}>
+                    <CountryWeather city={country.countryDetail.capitalEN} lang={lang} />
+                    <CurrencyWidget code={country.countryDetail.currencyCode} />
+                    <CountryTime TZcode={country.countryDetail.timezone} />
+                </div>
+                <CountryVideo />
+            </div>
+            <div style={{ maxWidth: "500px", maxHeight: "600px" }}>
+                <CountryGallery />
+            </div>
         </div>
     )
 }

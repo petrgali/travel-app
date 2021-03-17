@@ -3,10 +3,10 @@ import { config } from "./constants"
 
 const _apiBase = config.single.API_URL
 
-const getCountryDetail = async (id, locale) => {
+const getCountryDetail = async (country, capital, locale) => {
     try {
-        const res = await axios.get(`${_apiBase}ISOCode=${id}&lang=${locale}`)
-        return res.data
+        const res = await axios.get(`${_apiBase}nameEN=${country}&capitalEN=${capital}`)
+        return res.data[locale]
     } catch (e) {
         console.log(e)
     }

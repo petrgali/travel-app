@@ -47,21 +47,21 @@ const useStyles = makeStyles((theme) => ({
         paddingBottom: theme.spacing(1),
     },
 }))
-function CountryWeather({ lang,t }) {
+function CountryWeather({ city, lang, t }) {
     const classes = useStyles()
     let [weatherData, updateWeather] = useState({})
     let [weatherIcon, updateIcon] = useState("")
     let requestConfig = {
-        city: "Нур-Султан",
+        city: city,
         lang: lang,
     }
     useEffect(() => {
-        weather.current(requestConfig).then((response) => {
+       if (city) weather.current(requestConfig).then((response) => {
             updateWeather({ ...response })
             updateIcon(weather.getIcon(response.weather[0].icon))
         })
         // eslint-disable-next-line
-    }, [lang])
+    }, [lang, city])
     if (weatherIcon)
         return (
             <Card className={classes.root}>
