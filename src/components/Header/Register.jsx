@@ -188,7 +188,7 @@ const Register = (props) => {
                         {service.isLoading && (
                             <CircularProgress size={24} color="white" />
                         )}
-                        {!service.isLoading && "Регистрация"}
+                        {!service.isLoading && t("Регистрация")}
                     </Button>
                 </form>
             </DialogContent>
