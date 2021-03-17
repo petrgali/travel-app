@@ -11,6 +11,7 @@ import CloseIcon from "@material-ui/icons/Close"
 import Zoom from "@material-ui/core/Zoom"
 import { useDispatch } from "react-redux"
 import { updateSearch } from "../../redux/actions/searchActions"
+import { withNamespaces } from "react-i18next"
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -18,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
         alignItems: "center",
     },
     container: {
-      padding: 0,
+        padding: 0,
     },
     input: {
         margin: "0.5rem",
@@ -26,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-export default function SearchBar() {
+export function SearchBar({ t }) {
     const classes = useStyles()
     const [searchMsg, updateMsg] = useState("")
     const dispatch = useDispatch()
@@ -57,7 +58,7 @@ export default function SearchBar() {
                     }}
                     autoFocus
                     className={classes.input}
-                    placeholder="search..."
+                    placeholder={t("search...")}
                 />
                 <Zoom in={!!searchMsg}>
                     <IconButton
@@ -79,3 +80,4 @@ export default function SearchBar() {
         </Container>
     )
 }
+export default withNamespaces()(SearchBar)

@@ -27,5 +27,6 @@
     "Выйти": "Exit",
     "Войти": "Login",
     "Имя": "Name",
-    "Пароль": "Password"
+    "Пароль": "Password",
+    "search...": "search..."
 }
