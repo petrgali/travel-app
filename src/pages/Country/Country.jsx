@@ -47,9 +47,7 @@ export function Country(props) {
                 </div>
                 <CountryVideo />
             </div>
-            <div style={{ maxWidth: "500px", maxHeight: "600px" }}>
                 <CountryGallery />
-            </div>
         </div>
     )
 }
