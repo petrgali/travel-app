@@ -56,14 +56,15 @@ function CountryWeather({ city, lang, t }) {
         lang: lang,
     }
     useEffect(() => {
-        if (city) weather.current(requestConfig).then((response) => {
-            updateWeather({ ...response })
-            updateIcon(weather.getIcon(response.weather[0].icon))
-        })
+        if (city)
+            weather.current(requestConfig).then((response) => {
+                updateWeather({ ...response })
+                updateIcon(weather.getIcon(response.weather[0].icon))
+            })
         // eslint-disable-next-line
     }, [lang, city])
-    if (weatherIcon)
-        return (
+    return (
+        weatherIcon && (
             <Card className={classes.root}>
                 <div className={classes.details}>
                     <CardContent className={classes.content}>
@@ -71,7 +72,9 @@ function CountryWeather({ city, lang, t }) {
                             {+weatherData.main.temp.toFixed()}&deg;
                         </Typography>
                         <div className={classes.stat}>
-                            <p>{t("Humidity")} {weatherData.main.humidity}%</p>
+                            <p>
+                                {t("Humidity")} {weatherData.main.humidity}%
+                            </p>
                             {/* <p>Ветер {weatherData.wind.speed} м/сек</p> */}
                         </div>
                     </CardContent>
@@ -86,7 +89,6 @@ function CountryWeather({ city, lang, t }) {
                 </div>
             </Card>
         )
-    return <CircularProgress />
+    )
 }
 export default withNamespaces()(CountryWeather)
-
