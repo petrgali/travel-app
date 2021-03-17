@@ -10,7 +10,7 @@ import CountryGallery from "./components/CountryGallery"
 import CountryWeather from "./components/CountryWeather"
 import CurrencyWidget from "./components/CurrrencyWidget"
 import CountryTime from "./components/CountryTime"
-
+import Map from "./components/map/Map"
 export function Country(props) {
     const dispatch = useDispatch()
     const lang = useSelector((state) => state.locale.locale)
@@ -47,7 +47,8 @@ export function Country(props) {
                 </div>
                 <CountryVideo />
             </div>
-                <CountryGallery />
+            <CountryGallery />
+            <Map geoURL={country.countryDetail.geoJsonUrl} />
         </div>
     )
 }
