@@ -31,6 +31,6 @@ i18n.use(detector)
         },
         load: "languageOnly",
         nonExplicitSupportedLngs: false,
-        lng: "kz",
+        lng: "en",
     })
 export default i18n
