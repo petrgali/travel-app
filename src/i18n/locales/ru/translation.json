@@ -19,5 +19,8 @@
     "RUB/KZT": "рубль",
     "LogIn": "Вход",
     "SignIn": "Регистрация",
-    "Country on map": "Страна на карте"
+    "Country on map": "Страна на карте",
+    "ImageLimit": "(до 1 MB)",
+    "ImageAllowed": "Извините, разрешены только JPG, JPEG, PNG",
+    "ImageTooLarge": "Изображение слишком велико. Лимит - 1 МБ"
 }
